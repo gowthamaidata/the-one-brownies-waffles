@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The ONE — Brownies and Waffles | Weekends Only, Chitlapakkam</title>
+<meta name="description" content="The ONE Brownies and Waffles — small-batch brownies & fresh waffles on Chitlapakkam Main Road, Chennai. Saturdays & Sundays, 6–10 PM. Order on WhatsApp.">
+<meta property="og:title" content="The ONE — Brownies and Waffles">
+<meta property="og:description" content="Every bite, worth it. Weekends only · Sat & Sun, 6–10 PM · Chitlapakkam Main Road.">
+<meta property="og:image" content="images/logo.jpg">
+<link rel="icon" type="image/jpeg" href="images/logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --mint: #4EC8B4;
+    --mint-soft: #DDF3EE;
+    --mint-deep: #17796B;
+    --pink: #F7C4D4;
+    --pink-soft: #FCE9F0;
+    --rose: #E4557E;
+    --cream: #FFF9F2;
+    --cocoa: #43241B;
+    --cocoa-soft: #7A5A4C;
+    --butter: #F8DCA8;
+    --white: #FFFFFF;
+    --radius: 18px;
+    --shadow: 0 10px 30px rgba(67, 36, 27, 0.10);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--cream);
+    color: var(--cocoa);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  img { max-width: 100%; display: block; }
+  h1, h2, h3, .display { font-family: 'Lilita One', cursive; font-weight: 400; letter-spacing: 0.5px; }
+
+  /* ============ HERO ============ */
+  .hero {
+    position: relative;
+    background:
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.07) 0 2px, transparent 2px 34px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.07) 0 2px, transparent 2px 34px),
+      linear-gradient(160deg, #56D2BD 0%, var(--mint) 55%, #3AB3A0 100%);
+    padding: 52px 20px 90px;
+    text-align: center;
+    color: var(--white);
+  }
+  .logo-ring {
+    width: 168px; height: 168px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    background: var(--white);
+    padding: 8px;
+    box-shadow: 0 0 0 6px rgba(255,255,255,0.35), 0 14px 34px rgba(23, 90, 80, 0.35);
+  }
+  .logo-ring img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+  .hero h1 {
+    font-size: clamp(34px, 6vw, 54px);
+    text-shadow: 0 3px 0 rgba(23, 90, 80, 0.35);
+    line-height: 1.12;
+  }
+  .hero h1 .one { color: var(--butter); }
+  .tagline {
+    font-size: clamp(17px, 2.6vw, 21px);
+    font-weight: 700;
+    font-style: italic;
+    margin: 10px 0 16px;
+    color: #FFF6E6;
+  }
+  .hours-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.18);
+    border: 1.5px solid rgba(255,255,255,0.55);
+    border-radius: 999px;
+    padding: 7px 18px;
+    font-weight: 800;
+    font-size: 14.5px;
+    backdrop-filter: blur(2px);
+  }
+  .status-badge {
+    display: inline-block;
+    margin-top: 12px;
+    background: var(--white);
+    color: var(--mint-deep);
+    border-radius: 999px;
+    padding: 7px 18px;
+    font-weight: 800;
+    font-size: 14.5px;
+    box-shadow: 0 4px 12px rgba(23, 90, 80, 0.25);
+  }
+  .status-badge.open { color: #1D7A34; }
+  .hero-ctas {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 26px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    padding: 14px 26px;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn:focus-visible { outline: 3px solid var(--butter); outline-offset: 2px; }
+  .btn-wa { background: #23B33A; color: var(--white); box-shadow: 0 8px 20px rgba(20, 90, 35, 0.35); }
+  .btn-dir { background: var(--white); color: var(--mint-deep); box-shadow: 0 8px 20px rgba(23, 90, 80, 0.28); }
+  /* chocolate drip divider — the signature */
+  .drip { display: block; width: 100%; height: 54px; margin-top: -1px; position: absolute; bottom: -1px; left: 0; }
+
+  /* ============ SECTIONS ============ */
+  section { padding: 56px 20px; max-width: 1040px; margin: 0 auto; }
+  .sec-eyebrow {
+    text-align: center;
+    color: var(--rose);
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .sec-title { text-align: center; font-size: clamp(26px, 4.4vw, 36px); margin-bottom: 8px; }
+  .sec-sub { text-align: center; color: var(--cocoa-soft); max-width: 560px; margin: 0 auto 34px; }
+
+  /* ============ BESTSELLERS ============ */
+  .best-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 22px; }
+  .best-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    position: relative;
+    transition: transform 0.2s ease;
+  }
+  .best-card:hover { transform: translateY(-5px); }
+  .best-card .ph { height: 250px; overflow: hidden; }
+  .best-card .ph img { width: 100%; height: 100%; object-fit: cover; }
+  .ribbon {
+    position: absolute;
+    top: 14px; left: -6px;
+    background: var(--rose);
+    color: var(--white);
+    font-weight: 800;
+    font-size: 12.5px;
+    padding: 5px 14px 5px 12px;
+    border-radius: 0 999px 999px 0;
+    box-shadow: 0 4px 10px rgba(160, 40, 80, 0.35);
+    letter-spacing: 0.04em;
+  }
+  .best-card .body { padding: 16px 18px 20px; }
+  .best-card h3 { font-size: 20px; color: var(--cocoa); }
+  .best-card .ing { font-size: 13.5px; color: var(--cocoa-soft); font-style: italic; margin: 4px 0 10px; }
+  .price-tag { font-family: 'Lilita One', cursive; color: var(--mint-deep); font-size: 19px; }
+
+  /* ============ OFFER RIBBON ============ */
+  .offer {
+    display: none;
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  .offer.show { display: block; }
+  .offer-inner {
+    background: linear-gradient(100deg, var(--rose), #F27EA3);
+    color: var(--white);
+    border-radius: var(--radius);
+    text-align: center;
+    padding: 18px 22px;
+    font-weight: 800;
+    font-size: clamp(16px, 2.6vw, 19px);
+    box-shadow: 0 10px 26px rgba(200, 60, 110, 0.35);
+  }
+
+  /* ============ MENU ============ */
+  .menu-wrap { background: var(--pink-soft); }
+  .menu-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 26px;
+    overflow: hidden;
+  }
+  .menu-card > header {
+    background: var(--mint);
+    color: var(--white);
+    padding: 13px 22px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .menu-card > header h3 { font-size: 22px; }
+  .menu-card > header .cols { font-size: 12.5px; font-weight: 800; opacity: 0.95; letter-spacing: 0.06em; }
+  .menu-note {
+    padding: 10px 22px;
+    background: #FFF3E4;
+    color: #8A5A18;
+    font-weight: 700;
+    font-size: 14px;
+    border-bottom: 1px solid #F5E2C6;
+  }
+  .mrow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 14px 22px;
+    border-bottom: 1px dashed #EADFD2;
+    flex-wrap: wrap;
+  }
+  .mrow:last-child { border-bottom: none; }
+  .mrow .info { flex: 1 1 240px; min-width: 200px; }
+  .mrow .name { font-weight: 800; font-size: 16.5px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .mini-badge {
+    font-size: 11px;
+    font-weight: 800;
+    border-radius: 999px;
+    padding: 2px 10px;
+    letter-spacing: 0.03em;
+  }
+  .mini-badge.best { background: var(--pink); color: #9C2F55; }
+  .mini-badge.hot { background: #FFE1C2; color: #A85510; }
+  .mrow .ing { font-size: 13px; color: var(--cocoa-soft); font-style: italic; margin-top: 2px; }
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip {
+    background: var(--mint-soft);
+    border: 1.5px solid var(--mint);
+    color: var(--mint-deep);
+    border-radius: 999px;
+    padding: 5px 13px;
+    text-align: center;
+    min-width: 78px;
+  }
+  .chip .lbl { display: block; font-size: 10px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.85; }
+  .chip .amt { font-family: 'Lilita One', cursive; font-size: 16px; line-height: 1.15; }
+  .chip.pinkc { background: var(--pink-soft); border-color: var(--pink); color: #B33A63; }
+
+  /* ============ CUSTOM CAKE ============ */
+  .cake-card {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    background: var(--white);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .cake-card .ph { min-height: 280px; }
+  .cake-card .ph img { width: 100%; height: 100%; object-fit: cover; }
+  .cake-card .body { padding: 34px 30px; display: flex; flex-direction: column; justify-content: center; gap: 12px; }
+  .cake-card h3 { font-size: 26px; }
+  .cake-card p { color: var(--cocoa-soft); }
+  @media (max-width: 680px) { .cake-card { grid-template-columns: 1fr; } .cake-card .ph { max-height: 300px; } }
+
+  /* ============ GALLERY / SLIDESHOW ============ */
+  .gallery-wrap { background: var(--mint-soft); }
+  .slideshow {
+    position: relative;
+    max-width: 620px;
+    margin: 0 auto;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    background: var(--cocoa);
+    aspect-ratio: 4 / 5;
+  }
+  .slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.9s ease;
+  }
+  .slide.active { opacity: 1; }
+  .slide img { width: 100%; height: 100%; object-fit: cover; }
+  .slide .cap {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    padding: 26px 18px 14px;
+    background: linear-gradient(transparent, rgba(40, 18, 12, 0.75));
+    color: var(--white);
+    font-weight: 700;
+    font-size: 14.5px;
+    text-align: center;
+  }
+  .dots { display: flex; justify-content: center; gap: 9px; margin-top: 18px; flex-wrap: wrap; }
+  .dots button {
+    width: 11px; height: 11px;
+    border-radius: 50%;
+    border: none;
+    background: #BFAA9E;
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+  .dots button.active { background: var(--rose); transform: scale(1.35); }
+  .dots button:focus-visible { outline: 2px solid var(--mint-deep); outline-offset: 2px; }
+
+  /* ============ ABOUT ============ */
+  .about-inner { max-width: 640px; margin: 0 auto; text-align: center; }
+  .about-inner p { font-size: 17px; color: var(--cocoa-soft); margin-bottom: 14px; }
+  .about-inner p strong { color: var(--cocoa); }
+
+  /* ============ FIND US ============ */
+  .find-wrap { background: var(--pink-soft); }
+  .find-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 26px; align-items: stretch; }
+  @media (max-width: 760px) { .find-grid { grid-template-columns: 1fr; } }
+  .map-box {
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    min-height: 300px;
+    background: var(--white);
+  }
+  .map-box iframe { width: 100%; height: 100%; min-height: 300px; border: 0; }
+  .find-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 30px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    justify-content: center;
+  }
+  .find-card h3 { font-size: 22px; }
+  .find-line { display: flex; gap: 12px; align-items: flex-start; font-weight: 600; color: var(--cocoa-soft); }
+  .find-line .ic { flex-shrink: 0; font-size: 18px; }
+
+  /* ============ FOOTER ============ */
+  footer {
+    background: var(--cocoa);
+    color: #EAD9CE;
+    text-align: center;
+    padding: 40px 20px 90px;
+  }
+  footer .fbrand { font-family: 'Lilita One', cursive; font-size: 22px; color: var(--white); margin-bottom: 6px; }
+  footer .ftag { font-style: italic; font-size: 14.5px; margin-bottom: 18px; opacity: 0.85; }
+  .fsocial { display: flex; gap: 14px; justify-content: center; margin-bottom: 22px; flex-wrap: wrap; }
+  .fsocial a {
+    color: var(--white);
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 999px;
+    padding: 9px 20px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 14px;
+    transition: background 0.15s ease;
+  }
+  .fsocial a:hover { background: rgba(255,255,255,0.22); }
+  footer .credit { font-size: 13px; opacity: 0.75; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 18px; max-width: 480px; margin: 0 auto; }
+  footer .credit a { color: var(--pink); text-decoration: none; font-weight: 700; }
+
+  /* Floating WhatsApp button */
+  .wa-float {
+    position: fixed;
+    right: 18px; bottom: 18px;
+    z-index: 50;
+    background: #23B33A;
+    color: var(--white);
+    border-radius: 999px;
+    padding: 13px 20px;
+    font-weight: 800;
+    font-size: 15px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 10px 26px rgba(20, 90, 35, 0.45);
+  }
+  .wa-float:hover { transform: translateY(-2px); }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .slide { transition: none; }
+    .btn, .best-card, .wa-float { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="logo-ring"><img src="images/logo.jpg" alt="The ONE Brownies and Waffles logo — brownie and waffle mascots"></div>
+  <h1>THE <span class="one">ONE</span><br>Brownies &amp; Waffles</h1>
+  <p class="tagline">Every bite, worth it.</p>
+  <div class="hours-pill">🗓️ Weekends only · Sat &amp; Sun · 6 – 10 PM</div>
+  <br>
+  <span class="status-badge" id="statusBadge">Checking timings…</span>
+  <div class="hero-ctas">
+    <a class="btn btn-wa" href="https://wa.me/916385299345?text=Hi%20The%20ONE!%20I%27d%20like%20to%20place%20an%20order%20%F0%9F%8D%AB" target="_blank" rel="noopener">💬 Order on WhatsApp</a>
+    <a class="btn btn-dir" href="https://goo.gl/maps/MJ9rdji5kQkxW9vf8" target="_blank" rel="noopener">📍 Get Directions</a>
+  </div>
+  <!-- chocolate drip divider -->
+  <svg class="drip" viewBox="0 0 1440 54" preserveAspectRatio="none" aria-hidden="true">
+    <path fill="#FFF9F2" d="M0,20 C40,20 50,44 90,44 C130,44 140,14 185,14 C230,14 235,50 280,50 C325,50 330,22 375,22 C420,22 430,46 475,46 C520,46 528,10 575,10 C622,10 630,40 675,40 C720,40 730,18 775,18 C820,18 828,48 875,48 C922,48 930,16 975,16 C1020,16 1030,44 1075,44 C1120,44 1128,12 1175,12 C1222,12 1230,46 1275,46 C1320,46 1330,20 1375,20 C1405,20 1420,34 1440,34 L1440,54 L0,54 Z"/>
+  </svg>
+</header>
+
+<!-- ================= BESTSELLERS ================= -->
+<section id="bestsellers">
+  <div class="sec-eyebrow">Crowd favourites</div>
+  <h2 class="sec-title">The ones everyone asks for 🍫</h2>
+  <p class="sec-sub">Fresh off the cart every weekend — these three barely make it past 9 PM.</p>
+  <div class="best-grid">
+    <article class="best-card">
+      <span class="ribbon">★ Bestseller</span>
+      <div class="ph"><img src="images/brownie-triple.jpg" alt="Triple chocolate brownie with dark and white chocolate and sprinkles" loading="lazy"></div>
+      <div class="body">
+        <h3>Triple Choco Brownie</h3>
+        <p class="ing">dark chocolate, cocoa, egg, butter, country sugar</p>
+        <span class="price-tag">₹129</span>
+      </div>
+    </article>
+    <article class="best-card">
+      <span class="ribbon">★ Bestseller</span>
+      <div class="ph"><img src="images/waffle-double.jpg" alt="Double layer waffle held at the cart" loading="lazy"></div>
+      <div class="body">
+        <h3>Double Layer Waffle</h3>
+        <p class="ing">two waffle layers, dark &amp; white chocolate</p>
+        <span class="price-tag">₹119 / ₹139</span>
+      </div>
+    </article>
+    <article class="best-card">
+      <span class="ribbon">★ Bestseller</span>
+      <div class="ph"><img src="images/waffle-kitkat.jpg" alt="KitKat waffle with white chocolate and sprinkles" loading="lazy"></div>
+      <div class="body">
+        <h3>KitKat Waffle</h3>
+        <p class="ing">KitKat pieces, triple chocolate layers</p>
+        <span class="price-tag">₹139</span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ================= OFFER (sheet-driven) ================= -->
+<div class="offer" id="offerWrap"><div class="offer-inner" id="offerText"></div></div>
+
+<!-- ================= MENU ================= -->
+<div class="menu-wrap">
+  <section id="menu">
+    <div class="sec-eyebrow">Fresh every weekend</div>
+    <h2 class="sec-title">Our Menu</h2>
+    <p class="sec-sub">Small-batch, made with real chocolate and country sugar. Choco layers = how deep the chocolate goes.</p>
+    <div id="menuRoot"><!-- rendered by JS --></div>
+  </section>
+</div>
+
+<!-- ================= CUSTOM CAKES ================= -->
+<section id="custom">
+  <div class="cake-card">
+    <div class="ph"><img src="images/custom-cake.jpg" alt="Custom celebration brownie cake topped with chocolates" loading="lazy"></div>
+    <div class="body">
+      <div class="sec-eyebrow" style="text-align:left;">Made to order</div>
+      <h3>Celebration Brownie Cakes 🎂</h3>
+      <p>Birthdays, anniversaries, or just a very good Tuesday — we bake custom brownie cakes loaded with your favourite toppings. Message us your occasion and we'll make it sweet.</p>
+      <p style="font-weight:800; color:var(--mint-deep);">Price on request · order 2 days ahead</p>
+      <a class="btn btn-wa" style="align-self:flex-start;" href="https://wa.me/916385299345?text=Hi!%20I%27d%20like%20to%20order%20a%20custom%20brownie%20cake%20%F0%9F%8E%82" target="_blank" rel="noopener">💬 DM to order</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GALLERY ================= -->
+<div class="gallery-wrap">
+  <section id="moments">
+    <div class="sec-eyebrow">Life at the cart</div>
+    <h2 class="sec-title">Moments at The ONE 📸</h2>
+    <p class="sec-sub">One year of weekends, balloons, chocolate drips and happy faces.</p>
+    <div class="slideshow" id="slideshow" aria-roledescription="carousel" aria-label="Photo gallery">
+      <div class="slide active"><img src="images/g1-cart.jpg" alt="The ONE cart on Chitlapakkam Main Road"><div class="cap">Our little mint-and-pink home on Chitlapakkam Main Road</div></div>
+      <div class="slide"><img src="images/g3-launch.jpg" alt="Launch day with balloons" loading="lazy"><div class="cap">Launch day, 2025 — balloons and butterflies 🎈</div></div>
+      <div class="slide"><img src="images/g2-team.jpg" alt="The team at the counter" loading="lazy"><div class="cap">The crew that makes your weekends sweeter</div></div>
+      <div class="slide"><img src="images/g4-biscoff.jpg" alt="White chocolate brownie with Lotus Biscoff topping" loading="lazy"><div class="cap">White choco brownie, Lotus Biscoff topping — a customer's 5 stars ⭐</div></div>
+      <div class="slide"><img src="images/g5-carnival.jpg" alt="Brownie carnival in a bowl" loading="lazy"><div class="cap">The Brownie Carnival bowl</div></div>
+      <div class="slide"><img src="images/g6-swirl.jpg" alt="Brownie with dark and white chocolate swirl" loading="lazy"><div class="cap">Dark &amp; white swirl — messy on purpose</div></div>
+      <div class="slide"><img src="images/g7-selfie.jpg" alt="Street selfie in front of the cart" loading="lazy"><div class="cap">Weekend scenes ☀️</div></div>
+      <div class="slide"><img src="images/g8-sign.jpg" alt="The ONE glowing signboard at night" loading="lazy"><div class="cap">The sign that means it's dessert o'clock</div></div>
+    </div>
+    <div class="dots" id="dots" role="tablist" aria-label="Choose photo"></div>
+  </section>
+</div>
+
+<!-- ================= ABOUT ================= -->
+<section id="about">
+  <div class="sec-eyebrow">Our story</div>
+  <h2 class="sec-title">One cart. One dream. The ONE.</h2>
+  <div class="about-inner">
+    <p><strong>Started by Bharath M G in 2025</strong>, The ONE began as a weekend dream on Chitlapakkam Main Road — a mint-green cart, a hot waffle iron, and brownies baked in small batches with real chocolate and country sugar.</p>
+    <p>One year and thousands of happy bites later, the Saturday-evening queue says it better than we ever could. We're only open on weekends — because good things are worth waiting for.</p>
+  </div>
+</section>
+
+<!-- ================= FIND US ================= -->
+<div class="find-wrap">
+  <section id="findus">
+    <div class="sec-eyebrow">Come say hi</div>
+    <h2 class="sec-title">Find the cart</h2>
+    <div class="find-grid">
+      <div class="map-box">
+        <iframe title="Map to The ONE Brownies and Waffles" loading="lazy"
+          src="https://www.google.com/maps?q=Chitlapakkam%20Main%20Road%20opposite%20MIT%20Annexure%20Chennai&output=embed"></iframe>
+      </div>
+      <div class="find-card">
+        <h3>The ONE Brownies &amp; Waffles</h3>
+        <div class="find-line"><span class="ic">📍</span><span>Chitlapakkam Main Road,<br>opposite MIT Annexure, Chennai</span></div>
+        <div class="find-line"><span class="ic">🕕</span><span><strong>Saturday &amp; Sunday only</strong><br>6:00 PM – 10:00 PM</span></div>
+        <div class="find-line"><span class="ic">🛍️</span><span>WhatsApp orders · pickup at the cart</span></div>
+        <a class="btn btn-dir" style="align-self:flex-start; background:var(--mint); color:var(--white);" href="https://goo.gl/maps/MJ9rdji5kQkxW9vf8" target="_blank" rel="noopener">📍 Open in Google Maps</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="fbrand">THE ONE · Brownies and Waffles</div>
+  <div class="ftag">Every bite, worth it.</div>
+  <div class="fsocial">
+    <a href="https://wa.me/916385299345" target="_blank" rel="noopener">💬 WhatsApp</a>
+    <a href="https://www.instagram.com/_the_onee_1" target="_blank" rel="noopener">📷 Instagram</a>
+  </div>
+  <div class="credit">
+    © <span id="year"></span> The ONE Brownies and Waffles · Weekends only<br>
+    Website by <a href="mailto:gowtham.aidata@gmail.com">Gowtham</a> · <a href="mailto:gowtham.aidata@gmail.com">gowtham.aidata@gmail.com</a>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/916385299345?text=Hi%20The%20ONE!%20I%27d%20like%20to%20place%20an%20order%20%F0%9F%8D%AB" target="_blank" rel="noopener" aria-label="Order on WhatsApp">💬 Order</a>
+
+<script>
+/* ==================================================================
+   CONFIG — Gowtham: after creating the Google Sheet and publishing it
+   as CSV (File → Share → Publish to web → CSV), paste the URL below.
+   Leave it empty ('') and the built-in menu below is used instead.
+   ================================================================== */
+const SHEET_CSV_URL = '';
+
+/* Built-in menu (fallback + day-one data). Same columns as the sheet:
+   section | item | ingredients | normal | single | triple | badge | note | available */
+const DEFAULT_MENU = [
+  ['brownies','Dark Choco','dark chocolate, cocoa, egg, butter, country sugar','69','109','129','','', 'yes'],
+  ['brownies','White Choco','white chocolate, cocoa base, egg, butter, country sugar','79','119','139','','','yes'],
+  ['brownies','Ragi','ragi flour, dark chocolate, egg, butter, country sugar','79','119','139','','','yes'],
+  ['waffles','Vanilla','vanilla batter, milk chocolate','','99','119','','','yes'],
+  ['waffles','Red Velvet','red velvet batter, cream cheese, white chocolate','','109','129','','','yes'],
+  ['waffles','Brownie','brownie batter, dark chocolate','','109','129','','','yes'],
+  ['waffles','Double Layer','two waffle layers, dark & white chocolate','','119','139','bestseller','','yes'],
+  ['waffles','5-Star','5-Star caramel chunks, milk chocolate','','','139','','','yes'],
+  ['waffles','Kit Kat','KitKat pieces, milk chocolate','','','139','bestseller','','yes'],
+  ['waffles','Snickers','Snickers chunks, caramel, peanuts','','','139','','','yes'],
+  ['waffles','Lotus Biscoff','Biscoff spread, biscuit crumble, white chocolate','','','159','','','yes'],
+  ['waffles','Nutella','Nutella, hazelnut, milk chocolate','','','159','','','yes'],
+  ['yummy','Cookies with Choco Dips','choco-chip cookies, dark & white choco dips','39','','','hot','Sells out by 9 PM most weekends — come early!','yes'],
+  ['offer','This weekend: Buy any 3 products, get 1 brownie FREE 🎉','','','','','','','yes'],
+];
+
+const SECTION_META = {
+  brownies: { title: '🍫 Brownies', cols: 'NORMAL · SINGLE · TRIPLE choco layers' },
+  waffles:  { title: '🧇 Waffles',  cols: 'SINGLE · TRIPLE choco layers' },
+  yummy:    { title: '🍪 Yummy',    cols: '' },
+};
+
+/* --- tiny CSV parser (handles quoted fields with commas) --- */
+function parseCSV(text) {
+  const rows = []; let row = [], field = '', inQ = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (inQ) {
+      if (c === '"') { if (text[i+1] === '"') { field += '"'; i++; } else inQ = false; }
+      else field += c;
+    } else if (c === '"') inQ = true;
+    else if (c === ',') { row.push(field); field = ''; }
+    else if (c === '\n' || c === '\r') {
+      if (field !== '' || row.length) { row.push(field); rows.push(row); row = []; field = ''; }
+      if (c === '\r' && text[i+1] === '\n') i++;
+    } else field += c;
+  }
+  if (field !== '' || row.length) { row.push(field); rows.push(row); }
+  return rows;
+}
+
+function chipHTML(label, amt, pink) {
+  if (!amt) return '';
+  return `<div class="chip${pink ? ' pinkc' : ''}"><span class="lbl">${label}</span><span class="amt">₹${amt}</span></div>`;
+}
+
+function renderMenu(rows) {
+  const sections = { brownies: [], waffles: [], yummy: [] };
+  let offer = '';
+  rows.forEach(r => {
+    const [section, item, ing, normal, single, triple, badge, note, available] = r.map(x => (x || '').trim());
+    if (!section || section.toLowerCase() === 'section') return; // skip header row
+    const sec = section.toLowerCase();
+    if (sec === 'offer') { if ((available || 'yes').toLowerCase() !== 'no' && item) offer = item; return; }
+    if (!sections[sec]) return;
+    if ((available || 'yes').toLowerCase() === 'no') return;
+    sections[sec].push({ item, ing, normal, single, triple, badge: badge.toLowerCase(), note });
+  });
+
+  // offer banner
+  const ow = document.getElementById('offerWrap');
+  if (offer) { document.getElementById('offerText').textContent = offer; ow.classList.add('show'); }
+  else ow.classList.remove('show');
+
+  // menu cards
+  let html = '';
+  for (const key of ['brownies', 'waffles', 'yummy']) {
+    const items = sections[key];
+    if (!items.length) continue;
+    const meta = SECTION_META[key];
+    const note = items.find(i => i.note)?.note || '';
+    html += `<div class="menu-card"><header><h3>${meta.title}</h3>${meta.cols ? `<span class="cols">${meta.cols}</span>` : ''}</header>`;
+    if (note) html += `<div class="menu-note">🔥 ${note}</div>`;
+    for (const it of items) {
+      const badge = it.badge === 'bestseller' ? '<span class="mini-badge best">★ Bestseller</span>'
+                  : it.badge === 'hot' ? '<span class="mini-badge hot">🔥 Fast seller</span>' : '';
+      html += `<div class="mrow">
+        <div class="info">
+          <div class="name">${it.item} ${badge}</div>
+          ${it.ing ? `<div class="ing">(${it.ing})</div>` : ''}
+        </div>
+        <div class="chips">
+          ${chipHTML(key === 'yummy' ? 'Price' : 'Normal', it.normal, false)}
+          ${chipHTML('Single', it.single, false)}
+          ${chipHTML('Triple', it.triple, true)}
+        </div>
+      </div>`;
+    }
+    html += `</div>`;
+  }
+  document.getElementById('menuRoot').innerHTML = html;
+}
+
+async function loadMenu() {
+  if (SHEET_CSV_URL) {
+    try {
+      const r = await fetch(SHEET_CSV_URL, { cache: 'no-store' });
+      if (r.ok) {
+        const rows = parseCSV(await r.text());
+        if (rows.length > 1) { renderMenu(rows); return; }
+      }
+    } catch (e) { /* fall back below */ }
+  }
+  renderMenu(DEFAULT_MENU);
+}
+loadMenu();
+
+/* --- Open / closed status (India time) --- */
+function updateStatus() {
+  const now = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }));
+  const day = now.getDay(); // 0 Sun … 6 Sat
+  const hr = now.getHours() + now.getMinutes() / 60;
+  const badge = document.getElementById('statusBadge');
+  const isWeekend = (day === 6 || day === 0);
+  if (isWeekend && hr >= 18 && hr < 22) {
+    badge.textContent = '🟢 We\'re open now — come on over!';
+    badge.classList.add('open');
+  } else if (isWeekend && hr < 18) {
+    badge.textContent = '⏰ Opening today at 6 PM';
+  } else if (day === 6 && hr >= 22) {
+    badge.textContent = '🌙 Closed for tonight — back tomorrow, 6 PM';
+  } else {
+    badge.textContent = '🗓️ Opens Saturday at 6 PM';
+  }
+}
+updateStatus();
+setInterval(updateStatus, 60000);
+
+/* --- Slideshow: 3s per photo, soft fade, dots, pause on hover/touch --- */
+(function () {
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const dotsBox = document.getElementById('dots');
+  const show = document.getElementById('slideshow');
+  let idx = 0, timer = null;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  slides.forEach((_, i) => {
+    const b = document.createElement('button');
+    b.setAttribute('role', 'tab');
+    b.setAttribute('aria-label', 'Photo ' + (i + 1));
+    b.addEventListener('click', () => { go(i); restart(); });
+    dotsBox.appendChild(b);
+  });
+  const dots = Array.from(dotsBox.children);
+
+  function go(i) {
+    slides[idx].classList.remove('active');
+    dots[idx].classList.remove('active');
+    idx = (i + slides.length) % slides.length;
+    slides[idx].classList.add('active');
+    dots[idx].classList.add('active');
+  }
+  function start() { if (!reduced && !timer) timer = setInterval(() => go(idx + 1), 3000); }
+  function stop() { clearInterval(timer); timer = null; }
+  function restart() { stop(); start(); }
+
+  go(0);
+  start();
+  show.addEventListener('mouseenter', stop);
+  show.addEventListener('mouseleave', start);
+  show.addEventListener('touchstart', stop, { passive: true });
+  show.addEventListener('touchend', () => setTimeout(start, 1500), { passive: true });
+  document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
+})();
+
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
