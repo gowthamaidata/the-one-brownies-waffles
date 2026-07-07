@@ -121,7 +121,70 @@
   .btn-wa { background: #23B33A; color: var(--white); box-shadow: 0 8px 20px rgba(20, 90, 35, 0.35); }
   .btn-dir { background: var(--white); color: var(--mint-deep); box-shadow: 0 8px 20px rgba(23, 90, 80, 0.28); }
   /* chocolate drip divider — the signature */
-  .drip { display: block; width: 100%; height: 54px; margin-top: -1px; position: absolute; bottom: -1px; left: 0; }
+  .drip { display: block; width: 100%; height: 54px; margin-top: -1px; position: absolute; bottom: -1px; left: 0; z-index: 3; }
+
+  /* ---- animated mascots peeking over the drip ---- */
+  .mascot {
+    position: absolute;
+    bottom: 26px;            /* lower body hidden behind the drip */
+    z-index: 2;
+    width: 96px;
+    height: auto;
+    filter: drop-shadow(0 6px 10px rgba(23, 90, 80, 0.3));
+    animation: bob 3.2s ease-in-out infinite;
+  }
+  .mascot.brownie { left: 6%; }
+  .mascot.waffle  { right: 6%; animation-duration: 3.8s; animation-delay: 0.6s; }
+  @keyframes bob {
+    0%, 100% { transform: translateY(16px) rotate(-3deg); }
+    50%      { transform: translateY(-4px) rotate(3deg); }
+  }
+  @media (max-width: 640px) {
+    .mascot { width: 64px; bottom: 20px; }
+    .mascot.brownie { left: 3%; }
+    .mascot.waffle  { right: 3%; }
+  }
+
+  /* ---- floating sprinkles in the hero ---- */
+  .sprinkle {
+    position: absolute;
+    z-index: 1;
+    width: 9px; height: 22px;
+    border-radius: 999px;
+    opacity: 0.55;
+    animation: floaty 6s ease-in-out infinite;
+    pointer-events: none;
+  }
+  @keyframes floaty {
+    0%, 100% { transform: translateY(0) rotate(18deg); }
+    50%      { transform: translateY(-26px) rotate(-14deg); }
+  }
+
+  /* ---- slideshow arrows ---- */
+  .slideshow .nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 6;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.88);
+    color: var(--cocoa);
+    font-size: 26px;
+    line-height: 1;
+    font-weight: 700;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    box-shadow: 0 4px 14px rgba(40, 18, 12, 0.35);
+    transition: background 0.15s ease;
+  }
+  .slideshow .nav:hover { background: var(--white); }
+  .slideshow .nav:focus-visible { outline: 3px solid var(--rose); outline-offset: 2px; }
+  .slideshow .nav.prev { left: 12px; }
+  .slideshow .nav.next { right: 12px; }
+  @media (max-width: 640px) { .slideshow .nav { width: 38px; height: 38px; font-size: 22px; } }
 
   /* ============ SECTIONS ============ */
   section { padding: 56px 20px; max-width: 1040px; margin: 0 auto; }
@@ -205,7 +268,8 @@
     gap: 10px;
     flex-wrap: wrap;
   }
-  .menu-card > header h3 { font-size: 22px; }
+  .menu-card > header h3 { font-size: 22px; display: flex; align-items: center; gap: 9px; }
+  .mi { width: 24px; height: 24px; color: var(--white); flex-shrink: 0; }
   .menu-card > header .cols { font-size: 12.5px; font-weight: 800; opacity: 0.95; letter-spacing: 0.06em; }
   .menu-note {
     padding: 10px 22px;
@@ -389,6 +453,8 @@
     html { scroll-behavior: auto; }
     .slide { transition: none; }
     .btn, .best-card, .wa-float { transition: none; }
+    .mascot, .sprinkle { animation: none; }
+    .mascot { transform: translateY(6px); }
   }
 </style>
 </head>
@@ -406,6 +472,67 @@
     <a class="btn btn-wa" href="https://wa.me/916385299345?text=Hi%20The%20ONE!%20I%27d%20like%20to%20place%20an%20order%20%F0%9F%8D%AB" target="_blank" rel="noopener">💬 Order on WhatsApp</a>
     <a class="btn btn-dir" href="https://goo.gl/maps/MJ9rdji5kQkxW9vf8" target="_blank" rel="noopener">📍 Get Directions</a>
   </div>
+  <!-- floating sprinkles -->
+  <span class="sprinkle" style="left:12%; top:18%; background:#F8DCA8;"></span>
+  <span class="sprinkle" style="left:26%; top:64%; background:#F7C4D4; animation-duration:7s; animation-delay:1s;"></span>
+  <span class="sprinkle" style="left:48%; top:12%; background:#FFFFFF; animation-duration:5.4s; animation-delay:.4s;"></span>
+  <span class="sprinkle" style="left:70%; top:58%; background:#F8DCA8; animation-duration:6.6s; animation-delay:1.6s;"></span>
+  <span class="sprinkle" style="left:86%; top:22%; background:#F7C4D4; animation-duration:5.8s; animation-delay:.9s;"></span>
+  <span class="sprinkle" style="left:60%; top:78%; background:#FFFFFF; animation-duration:7.4s; animation-delay:2s;"></span>
+
+  <!-- Brownie mascot (peeks over the drip, left) -->
+  <svg class="mascot brownie" viewBox="0 0 120 130" aria-hidden="true">
+    <!-- waving arm -->
+    <path d="M14 52 Q2 40 8 30" stroke="#4A2417" stroke-width="9" stroke-linecap="round" fill="none"/>
+    <circle cx="8" cy="28" r="8" fill="#F8DCA8"/>
+    <!-- body -->
+    <rect x="16" y="34" width="88" height="82" rx="16" fill="#5B3222"/>
+    <path d="M16 52 Q60 40 104 52 L104 50 Q104 34 88 34 L32 34 Q16 34 16 50 Z" fill="#3F2014"/>
+    <!-- choc chips -->
+    <circle cx="34" cy="98" r="4" fill="#3F2014"/>
+    <circle cx="88" cy="92" r="4" fill="#3F2014"/>
+    <circle cx="62" cy="108" r="4" fill="#3F2014"/>
+    <!-- eyes -->
+    <ellipse cx="45" cy="66" rx="10" ry="12" fill="#FFFFFF"/>
+    <ellipse cx="75" cy="66" rx="10" ry="12" fill="#FFFFFF"/>
+    <circle cx="47" cy="68" r="4.6" fill="#2B140C"/>
+    <circle cx="73" cy="68" r="4.6" fill="#2B140C"/>
+    <circle cx="48.6" cy="66.2" r="1.5" fill="#FFFFFF"/>
+    <circle cx="74.6" cy="66.2" r="1.5" fill="#FFFFFF"/>
+    <!-- smile -->
+    <path d="M46 84 Q60 96 74 84" stroke="#FFFFFF" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+    <!-- right arm -->
+    <path d="M106 62 Q118 68 114 80" stroke="#4A2417" stroke-width="9" stroke-linecap="round" fill="none"/>
+    <circle cx="114" cy="82" r="8" fill="#F8DCA8"/>
+  </svg>
+
+  <!-- Waffle mascot (peeks over the drip, right) -->
+  <svg class="mascot waffle" viewBox="0 0 120 130" aria-hidden="true">
+    <!-- waving arm -->
+    <path d="M106 50 Q118 38 112 28" stroke="#B06E1E" stroke-width="9" stroke-linecap="round" fill="none"/>
+    <circle cx="112" cy="26" r="8" fill="#FFFFFF"/>
+    <!-- body -->
+    <rect x="16" y="34" width="88" height="86" rx="18" fill="#E8A33D"/>
+    <rect x="16" y="34" width="88" height="86" rx="18" fill="none" stroke="#C67F22" stroke-width="4"/>
+    <!-- waffle grid -->
+    <line x1="45" y1="38" x2="45" y2="116" stroke="#C67F22" stroke-width="5"/>
+    <line x1="75" y1="38" x2="75" y2="116" stroke="#C67F22" stroke-width="5"/>
+    <line x1="20" y1="62" x2="100" y2="62" stroke="#C67F22" stroke-width="5"/>
+    <line x1="20" y1="90" x2="100" y2="90" stroke="#C67F22" stroke-width="5"/>
+    <!-- eyes -->
+    <ellipse cx="45" cy="72" rx="10" ry="12" fill="#FFFFFF"/>
+    <ellipse cx="75" cy="72" rx="10" ry="12" fill="#FFFFFF"/>
+    <circle cx="47" cy="74" r="4.6" fill="#2B140C"/>
+    <circle cx="73" cy="74" r="4.6" fill="#2B140C"/>
+    <circle cx="48.6" cy="72.2" r="1.5" fill="#FFFFFF"/>
+    <circle cx="74.6" cy="72.2" r="1.5" fill="#FFFFFF"/>
+    <!-- smile -->
+    <path d="M48 94 Q60 104 72 94" stroke="#5B3222" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+    <!-- left arm -->
+    <path d="M14 66 Q2 72 6 84" stroke="#B06E1E" stroke-width="9" stroke-linecap="round" fill="none"/>
+    <circle cx="6" cy="86" r="8" fill="#FFFFFF"/>
+  </svg>
+
   <!-- chocolate drip divider -->
   <svg class="drip" viewBox="0 0 1440 54" preserveAspectRatio="none" aria-hidden="true">
     <path fill="#FFF9F2" d="M0,20 C40,20 50,44 90,44 C130,44 140,14 185,14 C230,14 235,50 280,50 C325,50 330,22 375,22 C420,22 430,46 475,46 C520,46 528,10 575,10 C622,10 630,40 675,40 C720,40 730,18 775,18 C820,18 828,48 875,48 C922,48 930,16 975,16 C1020,16 1030,44 1075,44 C1120,44 1128,12 1175,12 C1222,12 1230,46 1275,46 C1320,46 1330,20 1375,20 C1405,20 1420,34 1440,34 L1440,54 L0,54 Z"/>
@@ -490,6 +617,8 @@
       <div class="slide"><img src="images/g6-swirl.jpg" alt="Brownie with dark and white chocolate swirl" loading="lazy"><div class="cap">Dark &amp; white swirl — messy on purpose</div></div>
       <div class="slide"><img src="images/g7-selfie.jpg" alt="Street selfie in front of the cart" loading="lazy"><div class="cap">Weekend scenes ☀️</div></div>
       <div class="slide"><img src="images/g8-sign.jpg" alt="The ONE glowing signboard at night" loading="lazy"><div class="cap">The sign that means it's dessert o'clock</div></div>
+      <button class="nav prev" id="prevBtn" aria-label="Previous photo">‹</button>
+      <button class="nav next" id="nextBtn" aria-label="Next photo">›</button>
     </div>
     <div class="dots" id="dots" role="tablist" aria-label="Choose photo"></div>
   </section>
@@ -500,7 +629,7 @@
   <div class="sec-eyebrow">Our story</div>
   <h2 class="sec-title">One cart. One dream. The ONE.</h2>
   <div class="about-inner">
-    <p><strong>Started by Bharath M G in 2025</strong>, The ONE began as a weekend dream on Chitlapakkam Main Road — a mint-green cart, a hot waffle iron, and brownies baked in small batches with real chocolate and country sugar.</p>
+    <p><strong>Started by Bharath M G and friends in 2025</strong>, The ONE began as a weekend dream on Chitlapakkam Main Road — a mint-green cart, a hot waffle iron, and brownies baked in small batches with real chocolate and country sugar.</p>
     <p>One year and thousands of happy bites later, the Saturday-evening queue says it better than we ever could. We're only open on weekends — because good things are worth waiting for.</p>
   </div>
 </section>
@@ -569,10 +698,17 @@ const DEFAULT_MENU = [
   ['offer','This weekend: Buy any 3 products, get 1 brownie FREE 🎉','','','','','','','yes'],
 ];
 
+/* custom menu icons (render identically on all devices, unlike emoji) */
+const ICONS = {
+  brownie: `<svg class="mi" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="6" width="17" height="13" rx="3" fill="none" stroke="currentColor" stroke-width="1.9"/><path d="M3.5 10 Q12 7.6 20.5 10" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="8.6" cy="14" r="1.15" fill="currentColor"/><circle cx="15.4" cy="16" r="1.15" fill="currentColor"/><circle cx="12" cy="12.6" r="1.15" fill="currentColor"/></svg>`,
+  waffle:  `<svg class="mi" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5" fill="none" stroke="currentColor" stroke-width="1.9"/><line x1="9.2" y1="4.5" x2="9.2" y2="19.5" stroke="currentColor" stroke-width="1.6"/><line x1="14.8" y1="4.5" x2="14.8" y2="19.5" stroke="currentColor" stroke-width="1.6"/><line x1="4.5" y1="9.2" x2="19.5" y2="9.2" stroke="currentColor" stroke-width="1.6"/><line x1="4.5" y1="14.8" x2="19.5" y2="14.8" stroke="currentColor" stroke-width="1.6"/></svg>`,
+  cookie:  `<svg class="mi" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="9.2" cy="9.6" r="1.2" fill="currentColor"/><circle cx="14.6" cy="10.6" r="1.2" fill="currentColor"/><circle cx="10.4" cy="14.6" r="1.2" fill="currentColor"/><circle cx="15" cy="15" r="1.2" fill="currentColor"/></svg>`,
+};
+
 const SECTION_META = {
-  brownies: { title: '🍫 Brownies', cols: 'NORMAL · SINGLE · TRIPLE choco layers' },
-  waffles:  { title: '🧇 Waffles',  cols: 'SINGLE · TRIPLE choco layers' },
-  yummy:    { title: '🍪 Yummy',    cols: '' },
+  brownies: { title: ICONS.brownie + ' Brownies', cols: 'NORMAL · SINGLE · TRIPLE choco layers' },
+  waffles:  { title: ICONS.waffle + ' Waffles',  cols: 'SINGLE · TRIPLE choco layers' },
+  yummy:    { title: ICONS.cookie + ' Yummy',    cols: '' },
 };
 
 /* --- tiny CSV parser (handles quoted fields with commas) --- */
@@ -711,10 +847,32 @@ setInterval(updateStatus, 60000);
 
   go(0);
   start();
+
+  /* arrows */
+  document.getElementById('prevBtn').addEventListener('click', () => { go(idx - 1); restart(); });
+  document.getElementById('nextBtn').addEventListener('click', () => { go(idx + 1); restart(); });
+
+  /* keyboard (nice bonus on desktop) */
+  show.setAttribute('tabindex', '0');
+  show.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft')  { go(idx - 1); restart(); }
+    if (e.key === 'ArrowRight') { go(idx + 1); restart(); }
+  });
+
+  /* mobile swipe: left = next, right = previous */
+  let touchX = null;
   show.addEventListener('mouseenter', stop);
   show.addEventListener('mouseleave', start);
-  show.addEventListener('touchstart', stop, { passive: true });
-  show.addEventListener('touchend', () => setTimeout(start, 1500), { passive: true });
+  show.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; stop(); }, { passive: true });
+  show.addEventListener('touchend', e => {
+    if (touchX !== null) {
+      const dx = e.changedTouches[0].clientX - touchX;
+      if (dx < -45) go(idx + 1);       // swiped left → next
+      else if (dx > 45) go(idx - 1);   // swiped right → previous
+      touchX = null;
+    }
+    setTimeout(start, 1500);
+  }, { passive: true });
   document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
 })();
 
