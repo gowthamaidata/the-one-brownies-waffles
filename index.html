@@ -47,7 +47,7 @@
       repeating-linear-gradient(0deg, rgba(255,255,255,0.07) 0 2px, transparent 2px 34px),
       repeating-linear-gradient(90deg, rgba(255,255,255,0.07) 0 2px, transparent 2px 34px),
       linear-gradient(160deg, #56D2BD 0%, var(--mint) 55%, #3AB3A0 100%);
-    padding: 52px 20px 210px;
+    padding: 52px 20px 90px;
     text-align: center;
     color: var(--white);
   }
@@ -123,42 +123,163 @@
   /* chocolate drip divider — the signature */
   .drip { display: block; width: 100%; height: 54px; margin-top: -1px; position: absolute; bottom: -1px; left: 0; z-index: 3; }
 
-  /* ---- animated mascots: walk in from both sides, meet at centre, bump, rest, walk out, loop ---- */
-  .mascot {
+  /* ---- hero ambient scene (background layer behind all hero content) ---- */
+  .hero > * { position: relative; z-index: 2; }
+  .hero .hero-scene {
     position: absolute;
-    left: 50%;
-    bottom: 22px;            /* feet hidden behind the drip */
-    z-index: 2;
-    width: 150px;
-    height: auto;
-    --gap: 84px;             /* distance from centre when they meet */
-    filter: drop-shadow(0 6px 10px rgba(23, 90, 80, 0.3));
-    animation: meetWalk 12s ease-in-out infinite;
+    inset: 0;
+    z-index: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(4px, 3vw, 26px);
+    overflow: hidden;
+    pointer-events: none;
   }
-  .mascot.brownie { --sgn: -1; --lean: 10deg; }
-  .mascot.waffle  { --sgn:  1; --lean: -10deg; }
-  @keyframes meetWalk {
-    /* walk in with a waddle */
-    0%   { transform: translateX(calc(-50% + var(--sgn) * 62vw)) translateY(0)     rotate(0deg); }
-    6%   { transform: translateX(calc(-50% + var(--sgn) * 46vw)) translateY(-7px)  rotate(calc(var(--lean) * 0.4)); }
-    12%  { transform: translateX(calc(-50% + var(--sgn) * 32vw)) translateY(0)     rotate(calc(var(--lean) * -0.4)); }
-    18%  { transform: translateX(calc(-50% + var(--sgn) * 18vw)) translateY(-7px)  rotate(calc(var(--lean) * 0.4)); }
-    24%  { transform: translateX(calc(-50% + var(--sgn) * var(--gap))) translateY(0)     rotate(0deg); }
-    /* the meeting bump: both hop and lean in */
-    29%  { transform: translateX(calc(-50% + var(--sgn) * var(--gap))) translateY(-22px) rotate(var(--lean)); }
-    34%  { transform: translateX(calc(-50% + var(--sgn) * var(--gap))) translateY(0)     rotate(0deg); }
-    /* rest together, gentle bobbing */
-    45%  { transform: translateX(calc(-50% + var(--sgn) * var(--gap))) translateY(-6px)  rotate(0deg); }
-    56%  { transform: translateX(calc(-50% + var(--sgn) * var(--gap))) translateY(0)     rotate(0deg); }
-    67%  { transform: translateX(calc(-50% + var(--sgn) * var(--gap))) translateY(-6px)  rotate(0deg); }
-    78%  { transform: translateX(calc(-50% + var(--sgn) * var(--gap))) translateY(0)     rotate(0deg); }
-    /* walk back out */
-    88%  { transform: translateX(calc(-50% + var(--sgn) * 30vw)) translateY(-7px)  rotate(calc(var(--lean) * -0.4)); }
-    100% { transform: translateX(calc(-50% + var(--sgn) * 62vw)) translateY(0)     rotate(0deg); }
+  .hero .hero-veil {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(180deg,
+      rgba(86, 210, 189, 0.74) 0%,
+      rgba(78, 200, 180, 0.56) 48%,
+      rgba(58, 179, 160, 0.68) 100%);
   }
+  .hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;               /* JS shows it only if media/hero.* actually loads */
+  }
+  .hero-scene.has-video > :not(.hero-video) { display: none; }
+
+  /* ---- layered animated background (all transform/opacity = GPU-cheap) ---- */
+  /* warm glow behind the characters */
+  .hero-glow {
+    position: absolute;
+    left: 50%; top: 50%;
+    width: min(72vw, 560px); height: min(72vw, 560px);
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(248, 220, 168, 0.5) 0%, rgba(248, 220, 168, 0) 62%);
+    animation: glowPulse 12s ease-in-out infinite;
+  }
+  @keyframes glowPulse {
+    0%, 100% { opacity: 0.65; transform: translate(-50%, -50%) scale(1); }
+    50%      { opacity: 1;    transform: translate(-50%, -50%) scale(1.09); }
+  }
+  /* drifting pastel blobs for depth */
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(18px);
+    opacity: 0.28;
+    animation: blobDrift 18s ease-in-out infinite;
+  }
+  @keyframes blobDrift {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33%      { transform: translate(26px, -20px) scale(1.08); }
+    66%      { transform: translate(-18px, 16px) scale(0.94); }
+  }
+  /* swaying chocolate syrup ribbon */
+  .ribbon {
+    position: absolute;
+    left: 50%; top: 56%;
+    width: min(84vw, 420px);
+    transform: translateX(-50%);
+    opacity: 0.16;
+    transform-origin: 50% 0%;
+    animation: ribbonSway 14s ease-in-out infinite;
+  }
+  @keyframes ribbonSway {
+    0%, 100% { transform: translateX(-50%) rotate(-3deg); }
+    50%      { transform: translateX(calc(-50% + 14px)) rotate(3deg); }
+  }
+  /* floating dessert bits — near layer moves more/faster than far (parallax) */
+  .fbit {
+    position: absolute;
+    opacity: var(--o, 0.6);
+    animation: floatUp var(--dur, 12s) linear infinite;
+    animation-delay: var(--del, 0s);
+  }
+  .fbit.chip {
+    width: 13px; height: 13px; border-radius: 50%;
+    background: radial-gradient(circle at 32% 28%, #6B3B23, #2A1409);
+  }
+  .fbit.speck { width: 5px; height: 5px; border-radius: 50%; background: #3F2113; }
+  .fbit.wbit {
+    width: 15px; height: 15px; border-radius: 3px;
+    background-color: #E8A33D;
+    background-image: linear-gradient(#C67F22 1.5px, transparent 1.5px),
+                      linear-gradient(90deg, #C67F22 1.5px, transparent 1.5px);
+    background-size: 6px 6px;
+  }
+  @keyframes floatUp {
+    0%   { transform: translateY(24vh) rotate(0deg); opacity: 0; }
+    12%  { opacity: var(--o, 0.6); }
+    85%  { opacity: var(--o, 0.6); }
+    100% { transform: translateY(-30vh) rotate(160deg); opacity: 0; }
+  }
+  /* lazy steam wisps */
+  .steam { position: absolute; left: 50%; top: 22%; transform: translateX(-50%); }
+  .steam path {
+    fill: none; stroke: #FFFFFF; stroke-width: 5; stroke-linecap: round;
+    opacity: 0;
+    animation: steamRise 9s ease-in-out infinite;
+  }
+  .steam path:nth-child(2) { animation-delay: 3s; }
+  .steam path:nth-child(3) { animation-delay: 6s; }
+  @keyframes steamRise {
+    0%   { transform: translateY(16px); opacity: 0; }
+    35%  { opacity: 0.42; }
+    100% { transform: translateY(-34px); opacity: 0; }
+  }
+  /* twinkling sparkles */
+  .sparkle {
+    position: absolute;
+    width: 9px; height: 9px; border-radius: 50%;
+    background: radial-gradient(circle, #FFFFFF 0%, rgba(255,255,255,0) 70%);
+    opacity: 0;
+    animation: twinkle var(--dur, 6s) ease-in-out infinite;
+    animation-delay: var(--del, 0s);
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0; transform: scale(0.5); }
+    50%      { opacity: 0.9; transform: scale(1.2); }
+  }
+  /* mobile performance cap: drop the far parallax layer + heavy blurred blobs */
   @media (max-width: 640px) {
-    .hero { padding-bottom: 145px; }
-    .mascot { width: 92px; bottom: 18px; --gap: 52px; }
+    .fbit.far, .blob { display: none; }
+  }
+  .hmascot {
+    width: clamp(150px, 24vw, 235px);
+    height: auto;
+    filter: drop-shadow(0 16px 24px rgba(18, 82, 72, 0.38));
+    animation: heroBob 10s ease-in-out infinite;
+  }
+  .hmascot.brownie { --sgn: 1; }   /* leans right, toward the waffle */
+  .hmascot.waffle  { --sgn: -1; }  /* leans left, toward the brownie */
+  @keyframes heroBob {
+    0%, 100% { transform: translateX(0) translateY(6px)   rotate(calc(var(--sgn) * -2deg)); }
+    22%      { transform: translateX(0) translateY(-6px)  rotate(calc(var(--sgn) * 1deg)); }
+    45%      { transform: translateX(calc(var(--sgn) * 14px)) translateY(-14px) rotate(calc(var(--sgn) * 7deg)); }
+    55%      { transform: translateX(calc(var(--sgn) * 14px)) translateY(-14px) rotate(calc(var(--sgn) * 7deg)); }
+    78%      { transform: translateX(0) translateY(-2px)  rotate(0deg); }
+  }
+  /* raised inner arms wave and "clap" while the bodies lean in (45–55%) */
+  .arm-hi {
+    transform-box: fill-box;
+    animation: armWave 10s ease-in-out infinite;
+  }
+  .hmascot.brownie .arm-hi { transform-origin: 0% 100%; --armrot: -16deg; }
+  .hmascot.waffle  .arm-hi { transform-origin: 100% 100%; --armrot: 16deg; }
+  @keyframes armWave {
+    0%, 100% { transform: rotate(0deg); }
+    22%      { transform: rotate(calc(var(--armrot) * 0.4)); }
+    45%, 55% { transform: rotate(var(--armrot)); }
+    78%      { transform: rotate(0deg); }
   }
 
   /* ---- floating sprinkles in the hero ---- */
@@ -469,8 +590,9 @@
     html { scroll-behavior: auto; }
     .slide { transition: none; }
     .btn, .best-card, .wa-float { transition: none; }
-    .mascot, .sprinkle { animation: none; }
-    .mascot { transform: translateX(calc(-50% + var(--sgn) * var(--gap))); }
+    .hmascot, .arm-hi, .sprinkle, .fbit, .blob, .ribbon,
+    .hero-glow, .steam path, .sparkle { animation: none; }
+    .sparkle { opacity: 0.5; transform: scale(1); }
   }
 </style>
 </head>
@@ -488,66 +610,147 @@
     <a class="btn btn-wa" href="https://wa.me/916385299345?text=Hi%20The%20ONE!%20I%27d%20like%20to%20place%20an%20order%20%F0%9F%8D%AB" target="_blank" rel="noopener">💬 Order on WhatsApp</a>
     <a class="btn btn-dir" href="https://goo.gl/maps/MJ9rdji5kQkxW9vf8" target="_blank" rel="noopener">📍 Get Directions</a>
   </div>
-  <!-- floating sprinkles -->
-  <span class="sprinkle" style="left:12%; top:18%; background:#F8DCA8;"></span>
-  <span class="sprinkle" style="left:26%; top:64%; background:#F7C4D4; animation-duration:7s; animation-delay:1s;"></span>
-  <span class="sprinkle" style="left:48%; top:12%; background:#FFFFFF; animation-duration:5.4s; animation-delay:.4s;"></span>
-  <span class="sprinkle" style="left:70%; top:58%; background:#F8DCA8; animation-duration:6.6s; animation-delay:1.6s;"></span>
-  <span class="sprinkle" style="left:86%; top:22%; background:#F7C4D4; animation-duration:5.8s; animation-delay:.9s;"></span>
-  <span class="sprinkle" style="left:60%; top:78%; background:#FFFFFF; animation-duration:7.4s; animation-delay:2s;"></span>
+  <!-- ambient background scene: video if media/hero.* exists, else animated SVG characters -->
+  <div class="hero-scene" aria-hidden="true">
+    <video id="heroVideo" class="hero-video" autoplay muted loop playsinline poster="media/hero-poster.jpg">
+      <source src="media/hero.webm" type="video/webm">
+      <source src="media/hero.mp4" type="video/mp4">
+    </video>
 
-  <!-- Brownie mascot (peeks over the drip, left) -->
-  <svg class="mascot brownie" viewBox="0 0 120 130" aria-hidden="true">
-    <!-- waving arm -->
-    <path d="M14 52 Q2 40 8 30" stroke="#4A2417" stroke-width="9" stroke-linecap="round" fill="none"/>
-    <circle cx="8" cy="28" r="8" fill="#F8DCA8"/>
-    <!-- body -->
-    <rect x="16" y="34" width="88" height="82" rx="16" fill="#5B3222"/>
-    <path d="M16 52 Q60 40 104 52 L104 50 Q104 34 88 34 L32 34 Q16 34 16 50 Z" fill="#3F2014"/>
-    <!-- choc chips -->
-    <circle cx="34" cy="98" r="4" fill="#3F2014"/>
-    <circle cx="88" cy="92" r="4" fill="#3F2014"/>
-    <circle cx="62" cy="108" r="4" fill="#3F2014"/>
-    <!-- eyes -->
-    <ellipse cx="45" cy="66" rx="10" ry="12" fill="#FFFFFF"/>
-    <ellipse cx="75" cy="66" rx="10" ry="12" fill="#FFFFFF"/>
-    <circle cx="47" cy="68" r="4.6" fill="#2B140C"/>
-    <circle cx="73" cy="68" r="4.6" fill="#2B140C"/>
-    <circle cx="48.6" cy="66.2" r="1.5" fill="#FFFFFF"/>
-    <circle cx="74.6" cy="66.2" r="1.5" fill="#FFFFFF"/>
-    <!-- smile -->
-    <path d="M46 84 Q60 96 74 84" stroke="#FFFFFF" stroke-width="4.5" stroke-linecap="round" fill="none"/>
-    <!-- right arm -->
-    <path d="M106 62 Q118 68 114 80" stroke="#4A2417" stroke-width="9" stroke-linecap="round" fill="none"/>
-    <circle cx="114" cy="82" r="8" fill="#F8DCA8"/>
-  </svg>
+    <!-- background layers (back → front): glow, blobs, ribbon, floating bits, steam, sparkles -->
+    <div class="hero-glow"></div>
+    <span class="blob" style="left:8%;  top:14%; width:150px; height:150px; background:#7FE0D0;"></span>
+    <span class="blob" style="left:74%; top:60%; width:190px; height:190px; background:#F7C4D4; animation-delay:5s;"></span>
+    <span class="blob" style="left:38%; top:74%; width:130px; height:130px; background:#F8DCA8; animation-delay:10s;"></span>
+    <svg class="ribbon" viewBox="0 0 420 90" aria-hidden="true">
+      <path d="M0 46 C 60 12, 120 78, 190 44 S 330 14, 420 48"
+            fill="none" stroke="#43241B" stroke-width="26" stroke-linecap="round"/>
+    </svg>
+    <!-- near layer: bigger, faster -->
+    <span class="fbit chip"  style="left:14%; top:62%; --dur:9s;  --del:0s;   --o:.75;"></span>
+    <span class="fbit wbit"  style="left:30%; top:70%; --dur:11s; --del:2.5s; --o:.8;"></span>
+    <span class="fbit chip"  style="left:66%; top:66%; --dur:8.5s;--del:5s;   --o:.75;"></span>
+    <span class="fbit wbit"  style="left:84%; top:58%; --dur:10s; --del:1.2s; --o:.8;"></span>
+    <svg class="fbit near" style="left:48%; top:74%; width:17px; --dur:12s; --del:4s; --o:.85;" viewBox="0 0 20 22" aria-hidden="true">
+      <path d="M10 21 C3 15, 1 9, 4 6 C7 3, 10 6, 10 8 C10 6, 13 3, 16 6 C19 9, 17 15, 10 21 Z" fill="#E4557E"/>
+      <path d="M6 4 Q10 1 14 4 Q10 6 6 4 Z" fill="#4EC8B4"/>
+    </svg>
+    <!-- far layer: smaller, slower, dimmer (hidden on mobile) -->
+    <span class="fbit speck far" style="left:22%; top:36%; --dur:15s; --del:0s;  --o:.35;"></span>
+    <span class="fbit speck far" style="left:56%; top:30%; --dur:16s; --del:6s;  --o:.3;"></span>
+    <span class="fbit speck far" style="left:78%; top:40%; --dur:14s; --del:3s;  --o:.35;"></span>
+    <span class="fbit chip far"  style="left:40%; top:44%; --dur:15.5s; --del:8s; --o:.4; width:8px; height:8px;"></span>
+    <span class="fbit speck far" style="left:8%;  top:48%; --dur:16s; --del:10s; --o:.3;"></span>
+    <svg class="steam" viewBox="0 0 120 60" width="120" aria-hidden="true">
+      <path d="M20 52 Q14 40 22 32 Q30 24 24 12"/>
+      <path d="M60 54 Q54 42 62 34 Q70 26 64 14"/>
+      <path d="M100 52 Q94 40 102 32 Q110 24 104 12"/>
+    </svg>
+    <span class="sparkle" style="left:18%; top:24%; --dur:5.5s; --del:0s;"></span>
+    <span class="sparkle" style="left:70%; top:18%; --dur:7s;   --del:2s;"></span>
+    <span class="sparkle" style="left:86%; top:44%; --dur:6s;   --del:4s;"></span>
+    <span class="sparkle" style="left:34%; top:52%; --dur:6.5s; --del:1s;"></span>
 
-  <!-- Waffle mascot (peeks over the drip, right) -->
-  <svg class="mascot waffle" viewBox="0 0 120 130" aria-hidden="true">
-    <!-- waving arm -->
-    <path d="M106 50 Q118 38 112 28" stroke="#B06E1E" stroke-width="9" stroke-linecap="round" fill="none"/>
-    <circle cx="112" cy="26" r="8" fill="#FFFFFF"/>
-    <!-- body -->
-    <rect x="16" y="34" width="88" height="86" rx="18" fill="#E8A33D"/>
-    <rect x="16" y="34" width="88" height="86" rx="18" fill="none" stroke="#C67F22" stroke-width="4"/>
-    <!-- waffle grid -->
-    <line x1="45" y1="38" x2="45" y2="116" stroke="#C67F22" stroke-width="5"/>
-    <line x1="75" y1="38" x2="75" y2="116" stroke="#C67F22" stroke-width="5"/>
-    <line x1="20" y1="62" x2="100" y2="62" stroke="#C67F22" stroke-width="5"/>
-    <line x1="20" y1="90" x2="100" y2="90" stroke="#C67F22" stroke-width="5"/>
-    <!-- eyes -->
-    <ellipse cx="45" cy="72" rx="10" ry="12" fill="#FFFFFF"/>
-    <ellipse cx="75" cy="72" rx="10" ry="12" fill="#FFFFFF"/>
-    <circle cx="47" cy="74" r="4.6" fill="#2B140C"/>
-    <circle cx="73" cy="74" r="4.6" fill="#2B140C"/>
-    <circle cx="48.6" cy="72.2" r="1.5" fill="#FFFFFF"/>
-    <circle cx="74.6" cy="72.2" r="1.5" fill="#FFFFFF"/>
-    <!-- smile -->
-    <path d="M48 94 Q60 104 72 94" stroke="#5B3222" stroke-width="4.5" stroke-linecap="round" fill="none"/>
-    <!-- left arm -->
-    <path d="M14 66 Q2 72 6 84" stroke="#B06E1E" stroke-width="9" stroke-linecap="round" fill="none"/>
-    <circle cx="6" cy="86" r="8" fill="#FFFFFF"/>
-  </svg>
+    <span class="sprinkle" style="left:12%; top:16%; background:#F8DCA8;"></span>
+    <span class="sprinkle" style="left:26%; top:70%; background:#F7C4D4; animation-duration:7s; animation-delay:1s;"></span>
+    <span class="sprinkle" style="left:46%; top:10%; background:#FFFFFF; animation-duration:5.4s; animation-delay:.4s;"></span>
+    <span class="sprinkle" style="left:72%; top:64%; background:#F8DCA8; animation-duration:6.6s; animation-delay:1.6s;"></span>
+    <span class="sprinkle" style="left:88%; top:20%; background:#F7C4D4; animation-duration:5.8s; animation-delay:.9s;"></span>
+    <span class="sprinkle" style="left:60%; top:82%; background:#FFFFFF; animation-duration:7.4s; animation-delay:2s;"></span>
+
+    <!-- Brownie: gradient-shaded, glossy, expressive -->
+    <svg class="hmascot brownie" viewBox="0 0 200 200">
+      <defs>
+        <linearGradient id="bmB" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#7C4830"/><stop offset="1" stop-color="#3F2113"/>
+        </linearGradient>
+        <linearGradient id="bmC" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#5C311B"/><stop offset="1" stop-color="#2E170C"/>
+        </linearGradient>
+        <radialGradient id="bmG" cx="0.28" cy="0.16" r="0.9">
+          <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.38"/>
+          <stop offset="0.55" stop-color="#FFFFFF" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <!-- resting outer arm -->
+      <path d="M34 118 Q14 128 18 146" stroke="#3F2113" stroke-width="11" stroke-linecap="round" fill="none"/>
+      <circle cx="19" cy="149" r="9.5" fill="#F8DCA8"/>
+      <!-- body -->
+      <rect x="30" y="46" width="140" height="128" rx="30" fill="url(#bmB)"/>
+      <path d="M30 80 Q100 58 170 80 L170 76 Q170 46 140 46 L60 46 Q30 46 30 76 Z" fill="url(#bmC)"/>
+      <rect x="30" y="46" width="140" height="128" rx="30" fill="url(#bmG)"/>
+      <!-- chips with lit rims -->
+      <circle cx="57" cy="150" r="6" fill="#2A1409"/><circle cx="55.4" cy="148.4" r="2.2" fill="#6B3B23"/>
+      <circle cx="143" cy="142" r="6" fill="#2A1409"/><circle cx="141.4" cy="140.4" r="2.2" fill="#6B3B23"/>
+      <circle cx="100" cy="160" r="5" fill="#2A1409"/><circle cx="98.6" cy="158.6" r="1.9" fill="#6B3B23"/>
+      <!-- face -->
+      <path d="M60 84 Q72 78 84 84" stroke="#2A1409" stroke-width="4" stroke-linecap="round" fill="none"/>
+      <path d="M116 84 Q128 78 140 84" stroke="#2A1409" stroke-width="4" stroke-linecap="round" fill="none"/>
+      <ellipse cx="72" cy="104" rx="14" ry="16" fill="#FFFFFF"/>
+      <ellipse cx="128" cy="104" rx="14" ry="16" fill="#FFFFFF"/>
+      <circle cx="76" cy="107" r="6.5" fill="#4A2718"/><circle cx="76" cy="107" r="3.6" fill="#160A05"/>
+      <circle cx="78.4" cy="104.4" r="2" fill="#FFFFFF"/>
+      <circle cx="124" cy="107" r="6.5" fill="#4A2718"/><circle cx="124" cy="107" r="3.6" fill="#160A05"/>
+      <circle cx="126.4" cy="104.4" r="2" fill="#FFFFFF"/>
+      <ellipse cx="56" cy="126" rx="8" ry="5" fill="#E4557E" opacity="0.28"/>
+      <ellipse cx="144" cy="126" rx="8" ry="5" fill="#E4557E" opacity="0.28"/>
+      <path d="M76 132 Q100 158 124 132 Q100 144 76 132 Z" fill="#22100A"/>
+      <path d="M90 141 Q100 149 110 141 Q100 152 90 141 Z" fill="#E4557E"/>
+      <!-- raised inner arm (high-five) -->
+      <g class="arm-hi">
+        <path d="M166 112 Q190 96 186 72" stroke="#3F2113" stroke-width="11" stroke-linecap="round" fill="none"/>
+        <circle cx="186" cy="68" r="9.5" fill="#F8DCA8"/>
+      </g>
+    </svg>
+
+    <!-- Waffle: golden gradient, embossed grid, glossy -->
+    <svg class="hmascot waffle" viewBox="0 0 200 200">
+      <defs>
+        <linearGradient id="wmB" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#F5C267"/><stop offset="1" stop-color="#D18A25"/>
+        </linearGradient>
+        <radialGradient id="wmG" cx="0.3" cy="0.15" r="0.9">
+          <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.4"/>
+          <stop offset="0.55" stop-color="#FFFFFF" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <!-- resting outer arm -->
+      <path d="M166 118 Q186 128 182 146" stroke="#B06E1E" stroke-width="11" stroke-linecap="round" fill="none"/>
+      <circle cx="181" cy="149" r="9.5" fill="#FFFFFF"/>
+      <!-- body -->
+      <rect x="30" y="40" width="140" height="140" rx="34" fill="url(#wmB)"/>
+      <rect x="36" y="46" width="128" height="128" rx="28" fill="none" stroke="#C07E20" stroke-width="5" opacity="0.65"/>
+      <!-- embossed grid -->
+      <g stroke="#B9741C" stroke-width="8" opacity="0.85">
+        <line x1="76.6" y1="48" x2="76.6" y2="172"/><line x1="123.3" y1="48" x2="123.3" y2="172"/>
+        <line x1="38" y1="86.6" x2="162" y2="86.6"/><line x1="38" y1="133.3" x2="162" y2="133.3"/>
+      </g>
+      <g stroke="#F8D48A" stroke-width="2.4" opacity="0.8">
+        <line x1="73.6" y1="48" x2="73.6" y2="172"/><line x1="120.3" y1="48" x2="120.3" y2="172"/>
+        <line x1="38" y1="83.6" x2="162" y2="83.6"/><line x1="38" y1="130.3" x2="162" y2="130.3"/>
+      </g>
+      <rect x="30" y="40" width="140" height="140" rx="34" fill="url(#wmG)"/>
+      <!-- face -->
+      <path d="M60 82 Q72 76 84 82" stroke="#6B3B10" stroke-width="4" stroke-linecap="round" fill="none"/>
+      <path d="M116 82 Q128 76 140 82" stroke="#6B3B10" stroke-width="4" stroke-linecap="round" fill="none"/>
+      <ellipse cx="72" cy="102" rx="14" ry="16" fill="#FFFFFF"/>
+      <ellipse cx="128" cy="102" rx="14" ry="16" fill="#FFFFFF"/>
+      <circle cx="76" cy="105" r="6.5" fill="#6B3B10"/><circle cx="76" cy="105" r="3.6" fill="#20100A"/>
+      <circle cx="78.4" cy="102.4" r="2" fill="#FFFFFF"/>
+      <circle cx="124" cy="105" r="6.5" fill="#6B3B10"/><circle cx="124" cy="105" r="3.6" fill="#20100A"/>
+      <circle cx="126.4" cy="102.4" r="2" fill="#FFFFFF"/>
+      <ellipse cx="56" cy="124" rx="8" ry="5" fill="#E4557E" opacity="0.3"/>
+      <ellipse cx="144" cy="124" rx="8" ry="5" fill="#E4557E" opacity="0.3"/>
+      <path d="M78 130 Q100 152 122 130 Q100 141 78 130 Z" fill="#3A1D0C"/>
+      <path d="M91 138 Q100 145 109 138 Q100 148 91 138 Z" fill="#E4557E"/>
+      <!-- raised inner arm (high-five) -->
+      <g class="arm-hi">
+        <path d="M34 112 Q10 96 14 72" stroke="#B06E1E" stroke-width="11" stroke-linecap="round" fill="none"/>
+        <circle cx="14" cy="68" r="9.5" fill="#FFFFFF"/>
+      </g>
+    </svg>
+  </div>
+  <div class="hero-veil" aria-hidden="true"></div>
 
   <!-- chocolate drip divider -->
   <svg class="drip" viewBox="0 0 1440 54" preserveAspectRatio="none" aria-hidden="true">
@@ -890,6 +1093,16 @@ setInterval(updateStatus, 60000);
     setTimeout(start, 1500);
   }, { passive: true });
   document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
+})();
+
+/* --- hero background video: swap in only if media/hero.webm|mp4 actually exists --- */
+(function () {
+  const v = document.getElementById('heroVideo');
+  if (!v) return;
+  v.addEventListener('loadeddata', () => {
+    v.style.display = 'block';
+    v.closest('.hero-scene').classList.add('has-video');
+  });
 })();
 
 document.getElementById('year').textContent = new Date().getFullYear();
