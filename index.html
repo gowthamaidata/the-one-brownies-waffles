@@ -47,7 +47,7 @@
       repeating-linear-gradient(0deg, rgba(255,255,255,0.07) 0 2px, transparent 2px 34px),
       repeating-linear-gradient(90deg, rgba(255,255,255,0.07) 0 2px, transparent 2px 34px),
       linear-gradient(160deg, #56D2BD 0%, var(--mint) 55%, #3AB3A0 100%);
-    padding: 52px 20px 90px;
+    padding: 52px 20px 210px;
     text-align: center;
     color: var(--white);
   }
@@ -123,26 +123,42 @@
   /* chocolate drip divider — the signature */
   .drip { display: block; width: 100%; height: 54px; margin-top: -1px; position: absolute; bottom: -1px; left: 0; z-index: 3; }
 
-  /* ---- animated mascots peeking over the drip ---- */
+  /* ---- animated mascots: walk in from both sides, meet at centre, bump, rest, walk out, loop ---- */
   .mascot {
     position: absolute;
-    bottom: 26px;            /* lower body hidden behind the drip */
+    left: 50%;
+    bottom: 22px;            /* feet hidden behind the drip */
     z-index: 2;
-    width: 96px;
+    width: 150px;
     height: auto;
+    --gap: 84px;             /* distance from centre when they meet */
     filter: drop-shadow(0 6px 10px rgba(23, 90, 80, 0.3));
-    animation: bob 3.2s ease-in-out infinite;
+    animation: meetWalk 12s ease-in-out infinite;
   }
-  .mascot.brownie { left: 6%; }
-  .mascot.waffle  { right: 6%; animation-duration: 3.8s; animation-delay: 0.6s; }
-  @keyframes bob {
-    0%, 100% { transform: translateY(16px) rotate(-3deg); }
-    50%      { transform: translateY(-4px) rotate(3deg); }
+  .mascot.brownie { --sgn: -1; --lean: 10deg; }
+  .mascot.waffle  { --sgn:  1; --lean: -10deg; }
+  @keyframes meetWalk {
+    /* walk in with a waddle */
+    0%   { transform: translateX(calc(-50% + var(--sgn) * 62vw)) translateY(0)     rotate(0deg); }
+    6%   { transform: translateX(calc(-50% + var(--sgn) * 46vw)) translateY(-7px)  rotate(calc(var(--lean) * 0.4)); }
+    12%  { transform: translateX(calc(-50% + var(--sgn) * 32vw)) translateY(0)     rotate(calc(var(--lean) * -0.4)); }
+    18%  { transform: translateX(calc(-50% + var(--sgn) * 18vw)) translateY(-7px)  rotate(calc(var(--lean) * 0.4)); }
+    24%  { transform: translateX(calc(-50% + var(--sgn) * var(--gap))) translateY(0)     rotate(0deg); }
+    /* the meeting bump: both hop and lean in */
+    29%  { transform: translateX(calc(-50% + var(--sgn) * var(--gap))) translateY(-22px) rotate(var(--lean)); }
+    34%  { transform: translateX(calc(-50% + var(--sgn) * var(--gap))) translateY(0)     rotate(0deg); }
+    /* rest together, gentle bobbing */
+    45%  { transform: translateX(calc(-50% + var(--sgn) * var(--gap))) translateY(-6px)  rotate(0deg); }
+    56%  { transform: translateX(calc(-50% + var(--sgn) * var(--gap))) translateY(0)     rotate(0deg); }
+    67%  { transform: translateX(calc(-50% + var(--sgn) * var(--gap))) translateY(-6px)  rotate(0deg); }
+    78%  { transform: translateX(calc(-50% + var(--sgn) * var(--gap))) translateY(0)     rotate(0deg); }
+    /* walk back out */
+    88%  { transform: translateX(calc(-50% + var(--sgn) * 30vw)) translateY(-7px)  rotate(calc(var(--lean) * -0.4)); }
+    100% { transform: translateX(calc(-50% + var(--sgn) * 62vw)) translateY(0)     rotate(0deg); }
   }
   @media (max-width: 640px) {
-    .mascot { width: 64px; bottom: 20px; }
-    .mascot.brownie { left: 3%; }
-    .mascot.waffle  { right: 3%; }
+    .hero { padding-bottom: 145px; }
+    .mascot { width: 92px; bottom: 18px; --gap: 52px; }
   }
 
   /* ---- floating sprinkles in the hero ---- */
@@ -454,7 +470,7 @@
     .slide { transition: none; }
     .btn, .best-card, .wa-float { transition: none; }
     .mascot, .sprinkle { animation: none; }
-    .mascot { transform: translateY(6px); }
+    .mascot { transform: translateX(calc(-50% + var(--sgn) * var(--gap))); }
   }
 </style>
 </head>
