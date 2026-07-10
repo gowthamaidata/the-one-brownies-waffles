@@ -159,7 +159,21 @@
   @media (max-width: 760px) {
     .hero-video { object-fit: contain; }  /* tall phone hero: show the FULL video, bands match bg */
   }
-  .hero-scene.has-video > :not(.hero-video) { display: none; }
+  .hero-scene.has-video > :not(.hero-video):not(.hero-video-fill) { display: none; }
+
+  /* mobile letterbox fill: blurred poster frame behind the contained video,
+     so the bands above/below the video look alive instead of flat */
+  .hero-video-fill {
+    position: absolute;
+    inset: 0;
+    display: none;
+    background: url('media/hero-poster.jpg') center / cover no-repeat;
+    filter: blur(26px) brightness(0.96);
+    transform: scale(1.18);   /* hide blur's soft edges */
+  }
+  @media (max-width: 760px) {
+    .hero-scene.has-video .hero-video-fill { display: block; }
+  }
 
   /* ---- layered animated background (all transform/opacity = GPU-cheap) ---- */
   /* warm glow behind the characters */
@@ -257,6 +271,10 @@
   /* mobile performance cap: drop the far parallax layer + heavy blurred blobs */
   @media (max-width: 640px) {
     .fbit.far, .blob { display: none; }
+    /* compact hero → video band takes up more of the screen */
+    .hero { padding-top: 36px; }
+    .logo-ring { width: 126px; height: 126px; margin-bottom: 12px; }
+    .hero-ctas { margin-top: 18px; }
   }
   .hmascot {
     width: clamp(150px, 24vw, 235px);
@@ -617,6 +635,7 @@
   </div>
   <!-- ambient background scene: video if media/hero.* exists, else animated SVG characters -->
   <div class="hero-scene" aria-hidden="true">
+    <div class="hero-video-fill"></div>
     <video id="heroVideo" class="hero-video" autoplay muted loop playsinline poster="media/hero-poster.jpg">
       <source src="media/hero.webm" type="video/webm">
       <source src="media/hero.mp4" type="video/mp4">
