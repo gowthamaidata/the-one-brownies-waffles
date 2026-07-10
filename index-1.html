@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The ONE — Brownies and Waffles | Weekends Only, Chitlapakkam</title>
+<meta name="description" content="The ONE Brownies and Waffles — small-batch brownies & fresh waffles on Chitlapakkam Main Road, Chennai. Saturdays & Sundays, 6–10 PM. Order on WhatsApp.">
+<meta property="og:title" content="The ONE — Brownies and Waffles">
+<meta property="og:description" content="Every bite, worth it. Weekends only · Sat & Sun, 6–10 PM · Chitlapakkam Main Road.">
+<meta property="og:image" content="images/logo.jpg">
+<link rel="icon" type="image/jpeg" href="images/logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --mint: #4EC8B4;
+    --mint-soft: #DDF3EE;
+    --mint-deep: #17796B;
+    --pink: #F7C4D4;
+    --pink-soft: #FCE9F0;
+    --rose: #E4557E;
+    --cream: #FFF9F2;
+    --cocoa: #43241B;
+    --cocoa-soft: #7A5A4C;
+    --butter: #F8DCA8;
+    --white: #FFFFFF;
+    --radius: 18px;
+    --shadow: 0 10px 30px rgba(67, 36, 27, 0.10);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--cream);
+    color: var(--cocoa);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  img { max-width: 100%; display: block; }
+  h1, h2, h3, .display { font-family: 'Lilita One', cursive; font-weight: 400; letter-spacing: 0.5px; }
+
+  /* ============ HERO ============ */
+  .hero {
+    position: relative;
+    background:
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.07) 0 2px, transparent 2px 34px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.07) 0 2px, transparent 2px 34px),
+      linear-gradient(160deg, #56D2BD 0%, var(--mint) 55%, #3AB3A0 100%);
+    padding: 52px 20px 90px;
+    text-align: center;
+    color: var(--white);
+  }
+  .logo-ring {
+    width: 168px; height: 168px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    background: var(--white);
+    padding: 8px;
+    box-shadow: 0 0 0 6px rgba(255,255,255,0.35), 0 14px 34px rgba(23, 90, 80, 0.35);
+  }
+  .logo-ring img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+  .hero h1 {
+    font-size: clamp(34px, 6vw, 54px);
+    text-shadow: 0 2px 4px rgba(40, 22, 12, 0.55), 0 6px 20px rgba(40, 22, 12, 0.4);
+    line-height: 1.12;
+  }
+  .hero h1 .one { color: var(--butter); }
+  .tagline {
+    font-size: clamp(17px, 2.6vw, 21px);
+    font-weight: 700;
+    font-style: italic;
+    margin: 10px 0 16px;
+    color: #FFF6E6;
+    text-shadow: 0 2px 8px rgba(40, 22, 12, 0.5);
+  }
+  .hours-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(48, 30, 18, 0.38);
+    border: 1.5px solid rgba(255,255,255,0.55);
+    border-radius: 999px;
+    padding: 7px 18px;
+    font-weight: 800;
+    font-size: 14.5px;
+    backdrop-filter: blur(2px);
+  }
+  .status-badge {
+    display: inline-block;
+    margin-top: 12px;
+    background: var(--white);
+    color: var(--mint-deep);
+    border-radius: 999px;
+    padding: 7px 18px;
+    font-weight: 800;
+    font-size: 14.5px;
+    box-shadow: 0 4px 12px rgba(23, 90, 80, 0.25);
+  }
+  .status-badge.open { color: #1D7A34; }
+  .hero-ctas {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 26px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    padding: 14px 26px;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn:focus-visible { outline: 3px solid var(--butter); outline-offset: 2px; }
+  .btn-wa { background: #23B33A; color: var(--white); box-shadow: 0 8px 20px rgba(20, 90, 35, 0.35); }
+  .btn-dir { background: var(--white); color: var(--mint-deep); box-shadow: 0 8px 20px rgba(23, 90, 80, 0.28); }
+  /* chocolate drip divider — the signature */
+  .drip { display: block; width: 100%; height: 54px; margin-top: -1px; position: absolute; bottom: -1px; left: 0; z-index: 3; }
+
+  /* ---- hero ambient scene (background layer behind all hero content) ---- */
+  .hero > * { position: relative; z-index: 2; }
+  .hero .hero-scene {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(4px, 3vw, 26px);
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .hero .hero-veil {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(180deg,
+      rgba(43, 26, 15, 0.30) 0%,
+      rgba(43, 26, 15, 0.14) 48%,
+      rgba(43, 26, 15, 0.30) 100%);
+  }
+  .hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-color: #DABD83;   /* the video's own bg — letterbox bands blend invisibly */
+    display: none;               /* JS shows it only if media/hero.* actually loads */
+  }
+  @media (max-width: 760px) {
+    .hero-video { object-fit: contain; }  /* tall phone hero: show the FULL video, bands match bg */
+  }
+  .hero-scene.has-video > :not(.hero-video) { display: none; }
+
+  /* ---- layered animated background (all transform/opacity = GPU-cheap) ---- */
+  /* warm glow behind the characters */
+  .hero-glow {
+    position: absolute;
+    left: 50%; top: 50%;
+    width: min(72vw, 560px); height: min(72vw, 560px);
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(248, 220, 168, 0.5) 0%, rgba(248, 220, 168, 0) 62%);
+    animation: glowPulse 12s ease-in-out infinite;
+  }
+  @keyframes glowPulse {
+    0%, 100% { opacity: 0.65; transform: translate(-50%, -50%) scale(1); }
+    50%      { opacity: 1;    transform: translate(-50%, -50%) scale(1.09); }
+  }
+  /* drifting pastel blobs for depth */
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(18px);
+    opacity: 0.28;
+    animation: blobDrift 18s ease-in-out infinite;
+  }
+  @keyframes blobDrift {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33%      { transform: translate(26px, -20px) scale(1.08); }
+    66%      { transform: translate(-18px, 16px) scale(0.94); }
+  }
+  /* swaying chocolate syrup ribbon */
+  .ribbon {
+    position: absolute;
+    left: 50%; top: 56%;
+    width: min(84vw, 420px);
+    transform: translateX(-50%);
+    opacity: 0.16;
+    transform-origin: 50% 0%;
+    animation: ribbonSway 14s ease-in-out infinite;
+  }
+  @keyframes ribbonSway {
+    0%, 100% { transform: translateX(-50%) rotate(-3deg); }
+    50%      { transform: translateX(calc(-50% + 14px)) rotate(3deg); }
+  }
+  /* floating dessert bits — near layer moves more/faster than far (parallax) */
+  .fbit {
+    position: absolute;
+    opacity: var(--o, 0.6);
+    animation: floatUp var(--dur, 12s) linear infinite;
+    animation-delay: var(--del, 0s);
+  }
+  .fbit.chip {
+    width: 13px; height: 13px; border-radius: 50%;
+    background: radial-gradient(circle at 32% 28%, #6B3B23, #2A1409);
+  }
+  .fbit.speck { width: 5px; height: 5px; border-radius: 50%; background: #3F2113; }
+  .fbit.wbit {
+    width: 15px; height: 15px; border-radius: 3px;
+    background-color: #E8A33D;
+    background-image: linear-gradient(#C67F22 1.5px, transparent 1.5px),
+                      linear-gradient(90deg, #C67F22 1.5px, transparent 1.5px);
+    background-size: 6px 6px;
+  }
+  @keyframes floatUp {
+    0%   { transform: translateY(24vh) rotate(0deg); opacity: 0; }
+    12%  { opacity: var(--o, 0.6); }
+    85%  { opacity: var(--o, 0.6); }
+    100% { transform: translateY(-30vh) rotate(160deg); opacity: 0; }
+  }
+  /* lazy steam wisps */
+  .steam { position: absolute; left: 50%; top: 22%; transform: translateX(-50%); }
+  .steam path {
+    fill: none; stroke: #FFFFFF; stroke-width: 5; stroke-linecap: round;
+    opacity: 0;
+    animation: steamRise 9s ease-in-out infinite;
+  }
+  .steam path:nth-child(2) { animation-delay: 3s; }
+  .steam path:nth-child(3) { animation-delay: 6s; }
+  @keyframes steamRise {
+    0%   { transform: translateY(16px); opacity: 0; }
+    35%  { opacity: 0.42; }
+    100% { transform: translateY(-34px); opacity: 0; }
+  }
+  /* twinkling sparkles */
+  .sparkle {
+    position: absolute;
+    width: 9px; height: 9px; border-radius: 50%;
+    background: radial-gradient(circle, #FFFFFF 0%, rgba(255,255,255,0) 70%);
+    opacity: 0;
+    animation: twinkle var(--dur, 6s) ease-in-out infinite;
+    animation-delay: var(--del, 0s);
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0; transform: scale(0.5); }
+    50%      { opacity: 0.9; transform: scale(1.2); }
+  }
+  /* mobile performance cap: drop the far parallax layer + heavy blurred blobs */
+  @media (max-width: 640px) {
+    .fbit.far, .blob { display: none; }
+  }
+  .hmascot {
+    width: clamp(150px, 24vw, 235px);
+    height: auto;
+    filter: drop-shadow(0 16px 24px rgba(18, 82, 72, 0.38));
+    animation: heroBob 10s ease-in-out infinite;
+  }
+  .hmascot.brownie { --sgn: 1; }   /* leans right, toward the waffle */
+  .hmascot.waffle  { --sgn: -1; }  /* leans left, toward the brownie */
+  @keyframes heroBob {
+    0%, 100% { transform: translateX(0) translateY(6px)   rotate(calc(var(--sgn) * -2deg)); }
+    22%      { transform: translateX(0) translateY(-6px)  rotate(calc(var(--sgn) * 1deg)); }
+    45%      { transform: translateX(calc(var(--sgn) * 14px)) translateY(-14px) rotate(calc(var(--sgn) * 7deg)); }
+    55%      { transform: translateX(calc(var(--sgn) * 14px)) translateY(-14px) rotate(calc(var(--sgn) * 7deg)); }
+    78%      { transform: translateX(0) translateY(-2px)  rotate(0deg); }
+  }
+  /* raised inner arms wave and "clap" while the bodies lean in (45–55%) */
+  .arm-hi {
+    transform-box: fill-box;
+    animation: armWave 10s ease-in-out infinite;
+  }
+  .hmascot.brownie .arm-hi { transform-origin: 0% 100%; --armrot: -16deg; }
+  .hmascot.waffle  .arm-hi { transform-origin: 100% 100%; --armrot: 16deg; }
+  @keyframes armWave {
+    0%, 100% { transform: rotate(0deg); }
+    22%      { transform: rotate(calc(var(--armrot) * 0.4)); }
+    45%, 55% { transform: rotate(var(--armrot)); }
+    78%      { transform: rotate(0deg); }
+  }
+
+  /* ---- floating sprinkles in the hero ---- */
+  .sprinkle {
+    position: absolute;
+    z-index: 1;
+    width: 9px; height: 22px;
+    border-radius: 999px;
+    opacity: 0.55;
+    animation: floaty 6s ease-in-out infinite;
+    pointer-events: none;
+  }
+  @keyframes floaty {
+    0%, 100% { transform: translateY(0) rotate(18deg); }
+    50%      { transform: translateY(-26px) rotate(-14deg); }
+  }
+
+  /* ---- slideshow arrows ---- */
+  .slideshow .nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 6;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.88);
+    color: var(--cocoa);
+    font-size: 26px;
+    line-height: 1;
+    font-weight: 700;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    box-shadow: 0 4px 14px rgba(40, 18, 12, 0.35);
+    transition: background 0.15s ease;
+  }
+  .slideshow .nav:hover { background: var(--white); }
+  .slideshow .nav:focus-visible { outline: 3px solid var(--rose); outline-offset: 2px; }
+  .slideshow .nav.prev { left: 12px; }
+  .slideshow .nav.next { right: 12px; }
+  @media (max-width: 640px) { .slideshow .nav { width: 38px; height: 38px; font-size: 22px; } }
+
+  /* ============ SECTIONS ============ */
+  section { padding: 56px 20px; max-width: 1040px; margin: 0 auto; }
+  .sec-eyebrow {
+    text-align: center;
+    color: var(--rose);
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .sec-title { text-align: center; font-size: clamp(26px, 4.4vw, 36px); margin-bottom: 8px; }
+  .sec-sub { text-align: center; color: var(--cocoa-soft); max-width: 560px; margin: 0 auto 34px; }
+
+  /* ============ BESTSELLERS ============ */
+  .best-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 22px; }
+  .best-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    position: relative;
+    transition: transform 0.2s ease;
+  }
+  .best-card:hover { transform: translateY(-5px); }
+  .best-card .ph { height: 250px; overflow: hidden; }
+  .best-card .ph img { width: 100%; height: 100%; object-fit: cover; }
+  .ribbon {
+    position: absolute;
+    top: 14px; left: -6px;
+    background: var(--rose);
+    color: var(--white);
+    font-weight: 800;
+    font-size: 12.5px;
+    padding: 5px 14px 5px 12px;
+    border-radius: 0 999px 999px 0;
+    box-shadow: 0 4px 10px rgba(160, 40, 80, 0.35);
+    letter-spacing: 0.04em;
+  }
+  .best-card .body { padding: 16px 18px 20px; }
+  .best-card h3 { font-size: 20px; color: var(--cocoa); }
+  .best-card .ing { font-size: 13.5px; color: var(--cocoa-soft); font-style: italic; margin: 4px 0 10px; }
+  .price-tag { font-family: 'Lilita One', cursive; color: var(--mint-deep); font-size: 19px; }
+
+  /* ============ OFFER RIBBON ============ */
+  .offer {
+    display: none;
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  .offer.show { display: block; }
+  .offer-inner {
+    background: linear-gradient(100deg, var(--rose), #F27EA3);
+    color: var(--white);
+    border-radius: var(--radius);
+    text-align: center;
+    padding: 18px 22px;
+    font-weight: 800;
+    font-size: clamp(16px, 2.6vw, 19px);
+    box-shadow: 0 10px 26px rgba(200, 60, 110, 0.35);
+  }
+
+  /* ============ MENU ============ */
+  .menu-wrap { background: var(--pink-soft); }
+  .menu-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 26px;
+    overflow: hidden;
+  }
+  .menu-card > header {
+    background: var(--mint);
+    color: var(--white);
+    padding: 13px 22px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .menu-card > header h3 { font-size: 22px; display: flex; align-items: center; gap: 9px; }
+  .mi { width: 24px; height: 24px; color: var(--white); flex-shrink: 0; }
+  .menu-card > header .cols { font-size: 12.5px; font-weight: 800; opacity: 0.95; letter-spacing: 0.06em; }
+  .menu-note {
+    padding: 10px 22px;
+    background: #FFF3E4;
+    color: #8A5A18;
+    font-weight: 700;
+    font-size: 14px;
+    border-bottom: 1px solid #F5E2C6;
+  }
+  .mrow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 14px 22px;
+    border-bottom: 1px dashed #EADFD2;
+    flex-wrap: wrap;
+  }
+  .mrow:last-child { border-bottom: none; }
+  .mrow .info { flex: 1 1 240px; min-width: 200px; }
+  .mrow .name { font-weight: 800; font-size: 16.5px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .mini-badge {
+    font-size: 11px;
+    font-weight: 800;
+    border-radius: 999px;
+    padding: 2px 10px;
+    letter-spacing: 0.03em;
+  }
+  .mini-badge.best { background: var(--pink); color: #9C2F55; }
+  .mini-badge.hot { background: #FFE1C2; color: #A85510; }
+  .mrow .ing { font-size: 13px; color: var(--cocoa-soft); font-style: italic; margin-top: 2px; }
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip {
+    background: var(--mint-soft);
+    border: 1.5px solid var(--mint);
+    color: var(--mint-deep);
+    border-radius: 999px;
+    padding: 5px 13px;
+    text-align: center;
+    min-width: 78px;
+  }
+  .chip .lbl { display: block; font-size: 10px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.85; }
+  .chip .amt { font-family: 'Lilita One', cursive; font-size: 16px; line-height: 1.15; }
+  .chip.pinkc { background: var(--pink-soft); border-color: var(--pink); color: #B33A63; }
+
+  /* ============ CUSTOM CAKE ============ */
+  .cake-card {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    background: var(--white);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .cake-card .ph { min-height: 280px; }
+  .cake-card .ph img { width: 100%; height: 100%; object-fit: cover; }
+  .cake-card .body { padding: 34px 30px; display: flex; flex-direction: column; justify-content: center; gap: 12px; }
+  .cake-card h3 { font-size: 26px; }
+  .cake-card p { color: var(--cocoa-soft); }
+  @media (max-width: 680px) { .cake-card { grid-template-columns: 1fr; } .cake-card .ph { max-height: 300px; } }
+
+  /* ============ GALLERY / SLIDESHOW ============ */
+  .gallery-wrap { background: var(--mint-soft); }
+  .slideshow {
+    position: relative;
+    max-width: 620px;
+    margin: 0 auto;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    background: var(--cocoa);
+    aspect-ratio: 4 / 5;
+  }
+  .slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.9s ease;
+  }
+  .slide.active { opacity: 1; }
+  .slide img { width: 100%; height: 100%; object-fit: cover; }
+  .slide .cap {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    padding: 26px 18px 14px;
+    background: linear-gradient(transparent, rgba(40, 18, 12, 0.75));
+    color: var(--white);
+    font-weight: 700;
+    font-size: 14.5px;
+    text-align: center;
+  }
+  .dots { display: flex; justify-content: center; gap: 9px; margin-top: 18px; flex-wrap: wrap; }
+  .dots button {
+    width: 11px; height: 11px;
+    border-radius: 50%;
+    border: none;
+    background: #BFAA9E;
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+  .dots button.active { background: var(--rose); transform: scale(1.35); }
+  .dots button:focus-visible { outline: 2px solid var(--mint-deep); outline-offset: 2px; }
+
+  /* ============ ABOUT ============ */
+  .about-inner { max-width: 640px; margin: 0 auto; text-align: center; }
+  .about-inner p { font-size: 17px; color: var(--cocoa-soft); margin-bottom: 14px; }
+  .about-inner p strong { color: var(--cocoa); }
+
+  /* ============ FIND US ============ */
+  .find-wrap { background: var(--pink-soft); }
+  .find-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 26px; align-items: stretch; }
+  @media (max-width: 760px) { .find-grid { grid-template-columns: 1fr; } }
+  .map-box {
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    min-height: 300px;
+    background: var(--white);
+  }
+  .map-box iframe { width: 100%; height: 100%; min-height: 300px; border: 0; }
+  .find-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 30px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    justify-content: center;
+  }
+  .find-card h3 { font-size: 22px; }
+  .find-line { display: flex; gap: 12px; align-items: flex-start; font-weight: 600; color: var(--cocoa-soft); }
+  .find-line .ic { flex-shrink: 0; font-size: 18px; }
+
+  /* ============ FOOTER ============ */
+  footer {
+    background: var(--cocoa);
+    color: #EAD9CE;
+    text-align: center;
+    padding: 40px 20px 90px;
+  }
+  footer .fbrand { font-family: 'Lilita One', cursive; font-size: 22px; color: var(--white); margin-bottom: 6px; }
+  footer .ftag { font-style: italic; font-size: 14.5px; margin-bottom: 18px; opacity: 0.85; }
+  .fsocial { display: flex; gap: 14px; justify-content: center; margin-bottom: 22px; flex-wrap: wrap; }
+  .fsocial a {
+    color: var(--white);
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 999px;
+    padding: 9px 20px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 14px;
+    transition: background 0.15s ease;
+  }
+  .fsocial a:hover { background: rgba(255,255,255,0.22); }
+  footer .credit { font-size: 13px; opacity: 0.75; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 18px; max-width: 480px; margin: 0 auto; }
+  footer .credit a { color: var(--pink); text-decoration: none; font-weight: 700; }
+
+  /* Floating WhatsApp button */
+  .wa-float {
+    position: fixed;
+    right: 18px; bottom: 18px;
+    z-index: 50;
+    background: #23B33A;
+    color: var(--white);
+    border-radius: 999px;
+    padding: 13px 20px;
+    font-weight: 800;
+    font-size: 15px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 10px 26px rgba(20, 90, 35, 0.45);
+  }
+  .wa-float:hover { transform: translateY(-2px); }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .slide { transition: none; }
+    .btn, .best-card, .wa-float { transition: none; }
+    .hmascot, .arm-hi, .sprinkle, .fbit, .blob, .ribbon,
+    .hero-glow, .steam path, .sparkle { animation: none; }
+    .sparkle { opacity: 0.5; transform: scale(1); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="logo-ring"><img src="images/logo.jpg" alt="The ONE Brownies and Waffles logo — brownie and waffle mascots"></div>
+  <h1>THE <span class="one">ONE</span><br>Brownies &amp; Waffles</h1>
+  <p class="tagline">Every bite, worth it.</p>
+  <div class="hours-pill">🗓️ Weekends only · Sat &amp; Sun · 6 – 10 PM</div>
+  <br>
+  <span class="status-badge" id="statusBadge">Checking timings…</span>
+  <div class="hero-ctas">
+    <a class="btn btn-wa" href="https://wa.me/916385299345?text=Hi%20The%20ONE!%20I%27d%20like%20to%20place%20an%20order%20%F0%9F%8D%AB" target="_blank" rel="noopener">💬 Order on WhatsApp</a>
+    <a class="btn btn-dir" href="https://goo.gl/maps/MJ9rdji5kQkxW9vf8" target="_blank" rel="noopener">📍 Get Directions</a>
+  </div>
+  <!-- ambient background scene: video if media/hero.* exists, else animated SVG characters -->
+  <div class="hero-scene" aria-hidden="true">
+    <video id="heroVideo" class="hero-video" autoplay muted loop playsinline poster="media/hero-poster.jpg">
+      <source src="media/hero.webm" type="video/webm">
+      <source src="media/hero.mp4" type="video/mp4">
+    </video>
+
+    <!-- background layers (back → front): glow, blobs, ribbon, floating bits, steam, sparkles -->
+    <div class="hero-glow"></div>
+    <span class="blob" style="left:8%;  top:14%; width:150px; height:150px; background:#7FE0D0;"></span>
+    <span class="blob" style="left:74%; top:60%; width:190px; height:190px; background:#F7C4D4; animation-delay:5s;"></span>
+    <span class="blob" style="left:38%; top:74%; width:130px; height:130px; background:#F8DCA8; animation-delay:10s;"></span>
+    <svg class="ribbon" viewBox="0 0 420 90" aria-hidden="true">
+      <path d="M0 46 C 60 12, 120 78, 190 44 S 330 14, 420 48"
+            fill="none" stroke="#43241B" stroke-width="26" stroke-linecap="round"/>
+    </svg>
+    <!-- near layer: bigger, faster -->
+    <span class="fbit chip"  style="left:14%; top:62%; --dur:9s;  --del:0s;   --o:.75;"></span>
+    <span class="fbit wbit"  style="left:30%; top:70%; --dur:11s; --del:2.5s; --o:.8;"></span>
+    <span class="fbit chip"  style="left:66%; top:66%; --dur:8.5s;--del:5s;   --o:.75;"></span>
+    <span class="fbit wbit"  style="left:84%; top:58%; --dur:10s; --del:1.2s; --o:.8;"></span>
+    <svg class="fbit near" style="left:48%; top:74%; width:17px; --dur:12s; --del:4s; --o:.85;" viewBox="0 0 20 22" aria-hidden="true">
+      <path d="M10 21 C3 15, 1 9, 4 6 C7 3, 10 6, 10 8 C10 6, 13 3, 16 6 C19 9, 17 15, 10 21 Z" fill="#E4557E"/>
+      <path d="M6 4 Q10 1 14 4 Q10 6 6 4 Z" fill="#4EC8B4"/>
+    </svg>
+    <!-- far layer: smaller, slower, dimmer (hidden on mobile) -->
+    <span class="fbit speck far" style="left:22%; top:36%; --dur:15s; --del:0s;  --o:.35;"></span>
+    <span class="fbit speck far" style="left:56%; top:30%; --dur:16s; --del:6s;  --o:.3;"></span>
+    <span class="fbit speck far" style="left:78%; top:40%; --dur:14s; --del:3s;  --o:.35;"></span>
+    <span class="fbit chip far"  style="left:40%; top:44%; --dur:15.5s; --del:8s; --o:.4; width:8px; height:8px;"></span>
+    <span class="fbit speck far" style="left:8%;  top:48%; --dur:16s; --del:10s; --o:.3;"></span>
+    <svg class="steam" viewBox="0 0 120 60" width="120" aria-hidden="true">
+      <path d="M20 52 Q14 40 22 32 Q30 24 24 12"/>
+      <path d="M60 54 Q54 42 62 34 Q70 26 64 14"/>
+      <path d="M100 52 Q94 40 102 32 Q110 24 104 12"/>
+    </svg>
+    <span class="sparkle" style="left:18%; top:24%; --dur:5.5s; --del:0s;"></span>
+    <span class="sparkle" style="left:70%; top:18%; --dur:7s;   --del:2s;"></span>
+    <span class="sparkle" style="left:86%; top:44%; --dur:6s;   --del:4s;"></span>
+    <span class="sparkle" style="left:34%; top:52%; --dur:6.5s; --del:1s;"></span>
+
+    <span class="sprinkle" style="left:12%; top:16%; background:#F8DCA8;"></span>
+    <span class="sprinkle" style="left:26%; top:70%; background:#F7C4D4; animation-duration:7s; animation-delay:1s;"></span>
+    <span class="sprinkle" style="left:46%; top:10%; background:#FFFFFF; animation-duration:5.4s; animation-delay:.4s;"></span>
+    <span class="sprinkle" style="left:72%; top:64%; background:#F8DCA8; animation-duration:6.6s; animation-delay:1.6s;"></span>
+    <span class="sprinkle" style="left:88%; top:20%; background:#F7C4D4; animation-duration:5.8s; animation-delay:.9s;"></span>
+    <span class="sprinkle" style="left:60%; top:82%; background:#FFFFFF; animation-duration:7.4s; animation-delay:2s;"></span>
+
+    <!-- Brownie: gradient-shaded, glossy, expressive -->
+    <svg class="hmascot brownie" viewBox="0 0 200 200">
+      <defs>
+        <linearGradient id="bmB" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#7C4830"/><stop offset="1" stop-color="#3F2113"/>
+        </linearGradient>
+        <linearGradient id="bmC" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#5C311B"/><stop offset="1" stop-color="#2E170C"/>
+        </linearGradient>
+        <radialGradient id="bmG" cx="0.28" cy="0.16" r="0.9">
+          <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.38"/>
+          <stop offset="0.55" stop-color="#FFFFFF" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <!-- resting outer arm -->
+      <path d="M34 118 Q14 128 18 146" stroke="#3F2113" stroke-width="11" stroke-linecap="round" fill="none"/>
+      <circle cx="19" cy="149" r="9.5" fill="#F8DCA8"/>
+      <!-- body -->
+      <rect x="30" y="46" width="140" height="128" rx="30" fill="url(#bmB)"/>
+      <path d="M30 80 Q100 58 170 80 L170 76 Q170 46 140 46 L60 46 Q30 46 30 76 Z" fill="url(#bmC)"/>
+      <rect x="30" y="46" width="140" height="128" rx="30" fill="url(#bmG)"/>
+      <!-- chips with lit rims -->
+      <circle cx="57" cy="150" r="6" fill="#2A1409"/><circle cx="55.4" cy="148.4" r="2.2" fill="#6B3B23"/>
+      <circle cx="143" cy="142" r="6" fill="#2A1409"/><circle cx="141.4" cy="140.4" r="2.2" fill="#6B3B23"/>
+      <circle cx="100" cy="160" r="5" fill="#2A1409"/><circle cx="98.6" cy="158.6" r="1.9" fill="#6B3B23"/>
+      <!-- face -->
+      <path d="M60 84 Q72 78 84 84" stroke="#2A1409" stroke-width="4" stroke-linecap="round" fill="none"/>
+      <path d="M116 84 Q128 78 140 84" stroke="#2A1409" stroke-width="4" stroke-linecap="round" fill="none"/>
+      <ellipse cx="72" cy="104" rx="14" ry="16" fill="#FFFFFF"/>
+      <ellipse cx="128" cy="104" rx="14" ry="16" fill="#FFFFFF"/>
+      <circle cx="76" cy="107" r="6.5" fill="#4A2718"/><circle cx="76" cy="107" r="3.6" fill="#160A05"/>
+      <circle cx="78.4" cy="104.4" r="2" fill="#FFFFFF"/>
+      <circle cx="124" cy="107" r="6.5" fill="#4A2718"/><circle cx="124" cy="107" r="3.6" fill="#160A05"/>
+      <circle cx="126.4" cy="104.4" r="2" fill="#FFFFFF"/>
+      <ellipse cx="56" cy="126" rx="8" ry="5" fill="#E4557E" opacity="0.28"/>
+      <ellipse cx="144" cy="126" rx="8" ry="5" fill="#E4557E" opacity="0.28"/>
+      <path d="M76 132 Q100 158 124 132 Q100 144 76 132 Z" fill="#22100A"/>
+      <path d="M90 141 Q100 149 110 141 Q100 152 90 141 Z" fill="#E4557E"/>
+      <!-- raised inner arm (high-five) -->
+      <g class="arm-hi">
+        <path d="M166 112 Q190 96 186 72" stroke="#3F2113" stroke-width="11" stroke-linecap="round" fill="none"/>
+        <circle cx="186" cy="68" r="9.5" fill="#F8DCA8"/>
+      </g>
+    </svg>
+
+    <!-- Waffle: golden gradient, embossed grid, glossy -->
+    <svg class="hmascot waffle" viewBox="0 0 200 200">
+      <defs>
+        <linearGradient id="wmB" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#F5C267"/><stop offset="1" stop-color="#D18A25"/>
+        </linearGradient>
+        <radialGradient id="wmG" cx="0.3" cy="0.15" r="0.9">
+          <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.4"/>
+          <stop offset="0.55" stop-color="#FFFFFF" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <!-- resting outer arm -->
+      <path d="M166 118 Q186 128 182 146" stroke="#B06E1E" stroke-width="11" stroke-linecap="round" fill="none"/>
+      <circle cx="181" cy="149" r="9.5" fill="#FFFFFF"/>
+      <!-- body -->
+      <rect x="30" y="40" width="140" height="140" rx="34" fill="url(#wmB)"/>
+      <rect x="36" y="46" width="128" height="128" rx="28" fill="none" stroke="#C07E20" stroke-width="5" opacity="0.65"/>
+      <!-- embossed grid -->
+      <g stroke="#B9741C" stroke-width="8" opacity="0.85">
+        <line x1="76.6" y1="48" x2="76.6" y2="172"/><line x1="123.3" y1="48" x2="123.3" y2="172"/>
+        <line x1="38" y1="86.6" x2="162" y2="86.6"/><line x1="38" y1="133.3" x2="162" y2="133.3"/>
+      </g>
+      <g stroke="#F8D48A" stroke-width="2.4" opacity="0.8">
+        <line x1="73.6" y1="48" x2="73.6" y2="172"/><line x1="120.3" y1="48" x2="120.3" y2="172"/>
+        <line x1="38" y1="83.6" x2="162" y2="83.6"/><line x1="38" y1="130.3" x2="162" y2="130.3"/>
+      </g>
+      <rect x="30" y="40" width="140" height="140" rx="34" fill="url(#wmG)"/>
+      <!-- face -->
+      <path d="M60 82 Q72 76 84 82" stroke="#6B3B10" stroke-width="4" stroke-linecap="round" fill="none"/>
+      <path d="M116 82 Q128 76 140 82" stroke="#6B3B10" stroke-width="4" stroke-linecap="round" fill="none"/>
+      <ellipse cx="72" cy="102" rx="14" ry="16" fill="#FFFFFF"/>
+      <ellipse cx="128" cy="102" rx="14" ry="16" fill="#FFFFFF"/>
+      <circle cx="76" cy="105" r="6.5" fill="#6B3B10"/><circle cx="76" cy="105" r="3.6" fill="#20100A"/>
+      <circle cx="78.4" cy="102.4" r="2" fill="#FFFFFF"/>
+      <circle cx="124" cy="105" r="6.5" fill="#6B3B10"/><circle cx="124" cy="105" r="3.6" fill="#20100A"/>
+      <circle cx="126.4" cy="102.4" r="2" fill="#FFFFFF"/>
+      <ellipse cx="56" cy="124" rx="8" ry="5" fill="#E4557E" opacity="0.3"/>
+      <ellipse cx="144" cy="124" rx="8" ry="5" fill="#E4557E" opacity="0.3"/>
+      <path d="M78 130 Q100 152 122 130 Q100 141 78 130 Z" fill="#3A1D0C"/>
+      <path d="M91 138 Q100 145 109 138 Q100 148 91 138 Z" fill="#E4557E"/>
+      <!-- raised inner arm (high-five) -->
+      <g class="arm-hi">
+        <path d="M34 112 Q10 96 14 72" stroke="#B06E1E" stroke-width="11" stroke-linecap="round" fill="none"/>
+        <circle cx="14" cy="68" r="9.5" fill="#FFFFFF"/>
+      </g>
+    </svg>
+  </div>
+  <div class="hero-veil" aria-hidden="true"></div>
+
+  <!-- chocolate drip divider -->
+  <svg class="drip" viewBox="0 0 1440 54" preserveAspectRatio="none" aria-hidden="true">
+    <path fill="#FFF9F2" d="M0,20 C40,20 50,44 90,44 C130,44 140,14 185,14 C230,14 235,50 280,50 C325,50 330,22 375,22 C420,22 430,46 475,46 C520,46 528,10 575,10 C622,10 630,40 675,40 C720,40 730,18 775,18 C820,18 828,48 875,48 C922,48 930,16 975,16 C1020,16 1030,44 1075,44 C1120,44 1128,12 1175,12 C1222,12 1230,46 1275,46 C1320,46 1330,20 1375,20 C1405,20 1420,34 1440,34 L1440,54 L0,54 Z"/>
+  </svg>
+</header>
+
+<!-- ================= BESTSELLERS ================= -->
+<section id="bestsellers">
+  <div class="sec-eyebrow">Crowd favourites</div>
+  <h2 class="sec-title">The ones everyone asks for 🍫</h2>
+  <p class="sec-sub">Fresh off the cart every weekend — these three barely make it past 9 PM.</p>
+  <div class="best-grid">
+    <article class="best-card">
+      <span class="ribbon">★ Bestseller</span>
+      <div class="ph"><img src="images/brownie-triple.jpg" alt="Triple chocolate brownie with dark and white chocolate and sprinkles" loading="lazy"></div>
+      <div class="body">
+        <h3>Triple Choco Brownie</h3>
+        <p class="ing">dark chocolate, cocoa, egg, butter, country sugar</p>
+        <span class="price-tag">₹129</span>
+      </div>
+    </article>
+    <article class="best-card">
+      <span class="ribbon">★ Bestseller</span>
+      <div class="ph"><img src="images/waffle-double.jpg" alt="Double layer waffle held at the cart" loading="lazy"></div>
+      <div class="body">
+        <h3>Double Layer Waffle</h3>
+        <p class="ing">two waffle layers, dark &amp; white chocolate</p>
+        <span class="price-tag">₹119 / ₹139</span>
+      </div>
+    </article>
+    <article class="best-card">
+      <span class="ribbon">★ Bestseller</span>
+      <div class="ph"><img src="images/waffle-kitkat.jpg" alt="KitKat waffle with white chocolate and sprinkles" loading="lazy"></div>
+      <div class="body">
+        <h3>KitKat Waffle</h3>
+        <p class="ing">KitKat pieces, triple chocolate layers</p>
+        <span class="price-tag">₹139</span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ================= OFFER (sheet-driven) ================= -->
+<div class="offer" id="offerWrap"><div class="offer-inner" id="offerText"></div></div>
+
+<!-- ================= MENU ================= -->
+<div class="menu-wrap">
+  <section id="menu">
+    <div class="sec-eyebrow">Fresh every weekend</div>
+    <h2 class="sec-title">Our Menu</h2>
+    <p class="sec-sub">Small-batch, made with real chocolate and country sugar. Choco layers = how deep the chocolate goes.</p>
+    <div id="menuRoot"><!-- rendered by JS --></div>
+  </section>
+</div>
+
+<!-- ================= CUSTOM CAKES ================= -->
+<section id="custom">
+  <div class="cake-card">
+    <div class="ph"><img src="images/custom-cake.jpg" alt="Custom celebration brownie cake topped with chocolates" loading="lazy"></div>
+    <div class="body">
+      <div class="sec-eyebrow" style="text-align:left;">Made to order</div>
+      <h3>Celebration Brownie Cakes 🎂</h3>
+      <p>Birthdays, anniversaries, or just a very good Tuesday — we bake custom brownie cakes loaded with your favourite toppings. Message us your occasion and we'll make it sweet.</p>
+      <p style="font-weight:800; color:var(--mint-deep);">Price on request · order 2 days ahead</p>
+      <a class="btn btn-wa" style="align-self:flex-start;" href="https://wa.me/916385299345?text=Hi!%20I%27d%20like%20to%20order%20a%20custom%20brownie%20cake%20%F0%9F%8E%82" target="_blank" rel="noopener">💬 DM to order</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GALLERY ================= -->
+<div class="gallery-wrap">
+  <section id="moments">
+    <div class="sec-eyebrow">Life at the cart</div>
+    <h2 class="sec-title">Moments at The ONE 📸</h2>
+    <p class="sec-sub">One year of weekends, balloons, chocolate drips and happy faces.</p>
+    <div class="slideshow" id="slideshow" aria-roledescription="carousel" aria-label="Photo gallery">
+      <div class="slide active"><img src="images/g1-cart.jpg" alt="The ONE cart on Chitlapakkam Main Road"><div class="cap">Our little mint-and-pink home on Chitlapakkam Main Road</div></div>
+      <div class="slide"><img src="images/g3-launch.jpg" alt="Launch day with balloons" loading="lazy"><div class="cap">Launch day, 2025 — balloons and butterflies 🎈</div></div>
+      <div class="slide"><img src="images/g2-team.jpg" alt="The team at the counter" loading="lazy"><div class="cap">The crew that makes your weekends sweeter</div></div>
+      <div class="slide"><img src="images/g4-biscoff.jpg" alt="White chocolate brownie with Lotus Biscoff topping" loading="lazy"><div class="cap">White choco brownie, Lotus Biscoff topping — a customer's 5 stars ⭐</div></div>
+      <div class="slide"><img src="images/g5-carnival.jpg" alt="Brownie carnival in a bowl" loading="lazy"><div class="cap">The Brownie Carnival bowl</div></div>
+      <div class="slide"><img src="images/g6-swirl.jpg" alt="Brownie with dark and white chocolate swirl" loading="lazy"><div class="cap">Dark &amp; white swirl — messy on purpose</div></div>
+      <div class="slide"><img src="images/g7-selfie.jpg" alt="Street selfie in front of the cart" loading="lazy"><div class="cap">Weekend scenes ☀️</div></div>
+      <div class="slide"><img src="images/g8-sign.jpg" alt="The ONE glowing signboard at night" loading="lazy"><div class="cap">The sign that means it's dessert o'clock</div></div>
+      <button class="nav prev" id="prevBtn" aria-label="Previous photo">‹</button>
+      <button class="nav next" id="nextBtn" aria-label="Next photo">›</button>
+    </div>
+    <div class="dots" id="dots" role="tablist" aria-label="Choose photo"></div>
+  </section>
+</div>
+
+<!-- ================= ABOUT ================= -->
+<section id="about">
+  <div class="sec-eyebrow">Our story</div>
+  <h2 class="sec-title">One cart. One dream. The ONE.</h2>
+  <div class="about-inner">
+    <p><strong>Started by Bharath M G and friends in 2025</strong>, The ONE began as a weekend dream on Chitlapakkam Main Road — a mint-green cart, a hot waffle iron, and brownies baked in small batches with real chocolate and country sugar.</p>
+    <p>One year and thousands of happy bites later, the Saturday-evening queue says it better than we ever could. We're only open on weekends — because good things are worth waiting for.</p>
+  </div>
+</section>
+
+<!-- ================= FIND US ================= -->
+<div class="find-wrap">
+  <section id="findus">
+    <div class="sec-eyebrow">Come say hi</div>
+    <h2 class="sec-title">Find the cart</h2>
+    <div class="find-grid">
+      <div class="map-box">
+        <iframe title="Map to The ONE Brownies and Waffles" loading="lazy"
+          src="https://www.google.com/maps?q=Chitlapakkam%20Main%20Road%20opposite%20MIT%20Annexure%20Chennai&output=embed"></iframe>
+      </div>
+      <div class="find-card">
+        <h3>The ONE Brownies &amp; Waffles</h3>
+        <div class="find-line"><span class="ic">📍</span><span>Chitlapakkam Main Road,<br>opposite MIT Annexure, Chennai</span></div>
+        <div class="find-line"><span class="ic">🕕</span><span><strong>Saturday &amp; Sunday only</strong><br>6:00 PM – 10:00 PM</span></div>
+        <div class="find-line"><span class="ic">🛍️</span><span>WhatsApp orders · pickup at the cart</span></div>
+        <a class="btn btn-dir" style="align-self:flex-start; background:var(--mint); color:var(--white);" href="https://goo.gl/maps/MJ9rdji5kQkxW9vf8" target="_blank" rel="noopener">📍 Open in Google Maps</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="fbrand">THE ONE · Brownies and Waffles</div>
+  <div class="ftag">Every bite, worth it.</div>
+  <div class="fsocial">
+    <a href="https://wa.me/916385299345" target="_blank" rel="noopener">💬 WhatsApp</a>
+    <a href="https://www.instagram.com/_the_onee_1" target="_blank" rel="noopener">📷 Instagram</a>
+  </div>
+  <div class="credit">
+    © <span id="year"></span> The ONE Brownies and Waffles · Weekends only<br>
+    Website by <a href="mailto:gowtham.aidata@gmail.com">Gowtham</a> · <a href="mailto:gowtham.aidata@gmail.com">gowtham.aidata@gmail.com</a>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/916385299345?text=Hi%20The%20ONE!%20I%27d%20like%20to%20place%20an%20order%20%F0%9F%8D%AB" target="_blank" rel="noopener" aria-label="Order on WhatsApp">💬 Order</a>
+
+<script>
+/* ==================================================================
+   CONFIG — Gowtham: after creating the Google Sheet and publishing it
+   as CSV (File → Share → Publish to web → CSV), paste the URL below.
+   Leave it empty ('') and the built-in menu below is used instead.
+   ================================================================== */
+const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTv7Tl_ufD1zwnTUGNcjEFxg7q4fVV0uguHAEspU6XmOoXhiI_oGOBfW4M2S3oSypEoJ1FTZeChH9aD/pub?output=csv';
+
+/* Built-in menu (fallback + day-one data). Same columns as the sheet:
+   section | item | ingredients | normal | single | triple | badge | note | available */
+const DEFAULT_MENU = [
+  ['brownies','Dark Choco','dark chocolate, cocoa, egg, butter, country sugar','69','109','129','','', 'yes'],
+  ['brownies','White Choco','white chocolate, cocoa base, egg, butter, country sugar','79','119','139','','','yes'],
+  ['brownies','Ragi','ragi flour, dark chocolate, egg, butter, country sugar','79','119','139','','','yes'],
+  ['waffles','Vanilla','vanilla batter, milk chocolate','','99','119','','','yes'],
+  ['waffles','Red Velvet','red velvet batter, cream cheese, white chocolate','','109','129','','','yes'],
+  ['waffles','Brownie','brownie batter, dark chocolate','','109','129','','','yes'],
+  ['waffles','Double Layer','two waffle layers, dark & white chocolate','','119','139','bestseller','','yes'],
+  ['waffles','5-Star','5-Star caramel chunks, milk chocolate','','','139','','','yes'],
+  ['waffles','Kit Kat','KitKat pieces, milk chocolate','','','139','bestseller','','yes'],
+  ['waffles','Snickers','Snickers chunks, caramel, peanuts','','','139','','','yes'],
+  ['waffles','Lotus Biscoff','Biscoff spread, biscuit crumble, white chocolate','','','159','','','yes'],
+  ['waffles','Nutella','Nutella, hazelnut, milk chocolate','','','159','','','yes'],
+  ['yummy','Cookies with Choco Dips','choco-chip cookies, dark & white choco dips','39','','','hot','Sells out by 9 PM most weekends — come early!','yes'],
+  ['offer','This weekend: Buy any 3 products, get 1 brownie FREE 🎉','','','','','','','yes'],
+];
+
+/* custom menu icons (render identically on all devices, unlike emoji) */
+const ICONS = {
+  brownie: `<svg class="mi" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="6" width="17" height="13" rx="3" fill="none" stroke="currentColor" stroke-width="1.9"/><path d="M3.5 10 Q12 7.6 20.5 10" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="8.6" cy="14" r="1.15" fill="currentColor"/><circle cx="15.4" cy="16" r="1.15" fill="currentColor"/><circle cx="12" cy="12.6" r="1.15" fill="currentColor"/></svg>`,
+  waffle:  `<svg class="mi" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5" fill="none" stroke="currentColor" stroke-width="1.9"/><line x1="9.2" y1="4.5" x2="9.2" y2="19.5" stroke="currentColor" stroke-width="1.6"/><line x1="14.8" y1="4.5" x2="14.8" y2="19.5" stroke="currentColor" stroke-width="1.6"/><line x1="4.5" y1="9.2" x2="19.5" y2="9.2" stroke="currentColor" stroke-width="1.6"/><line x1="4.5" y1="14.8" x2="19.5" y2="14.8" stroke="currentColor" stroke-width="1.6"/></svg>`,
+  cookie:  `<svg class="mi" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="9.2" cy="9.6" r="1.2" fill="currentColor"/><circle cx="14.6" cy="10.6" r="1.2" fill="currentColor"/><circle cx="10.4" cy="14.6" r="1.2" fill="currentColor"/><circle cx="15" cy="15" r="1.2" fill="currentColor"/></svg>`,
+};
+
+const SECTION_META = {
+  brownies: { title: ICONS.brownie + ' Brownies', cols: 'NORMAL · SINGLE · TRIPLE choco layers' },
+  waffles:  { title: ICONS.waffle + ' Waffles',  cols: 'SINGLE · TRIPLE choco layers' },
+  yummy:    { title: ICONS.cookie + ' Yummy',    cols: '' },
+};
+
+/* --- tiny CSV parser (handles quoted fields with commas) --- */
+function parseCSV(text) {
+  const rows = []; let row = [], field = '', inQ = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (inQ) {
+      if (c === '"') { if (text[i+1] === '"') { field += '"'; i++; } else inQ = false; }
+      else field += c;
+    } else if (c === '"') inQ = true;
+    else if (c === ',') { row.push(field); field = ''; }
+    else if (c === '\n' || c === '\r') {
+      if (field !== '' || row.length) { row.push(field); rows.push(row); row = []; field = ''; }
+      if (c === '\r' && text[i+1] === '\n') i++;
+    } else field += c;
+  }
+  if (field !== '' || row.length) { row.push(field); rows.push(row); }
+  return rows;
+}
+
+function chipHTML(label, amt, pink) {
+  if (!amt) return '';
+  return `<div class="chip${pink ? ' pinkc' : ''}"><span class="lbl">${label}</span><span class="amt">₹${amt}</span></div>`;
+}
+
+function renderMenu(rows) {
+  const sections = { brownies: [], waffles: [], yummy: [] };
+  let offer = '';
+  rows.forEach(r => {
+    const [section, item, ing, normal, single, triple, badge, note, available] = r.map(x => (x || '').trim());
+    if (!section || section.toLowerCase() === 'section') return; // skip header row
+    const sec = section.toLowerCase();
+    if (sec === 'offer') { if ((available || 'yes').toLowerCase() !== 'no' && item) offer = item; return; }
+    if (!sections[sec]) return;
+    if ((available || 'yes').toLowerCase() === 'no') return;
+    sections[sec].push({ item, ing, normal, single, triple, badge: badge.toLowerCase(), note });
+  });
+
+  // offer banner
+  const ow = document.getElementById('offerWrap');
+  if (offer) { document.getElementById('offerText').textContent = offer; ow.classList.add('show'); }
+  else ow.classList.remove('show');
+
+  // menu cards
+  let html = '';
+  for (const key of ['brownies', 'waffles', 'yummy']) {
+    const items = sections[key];
+    if (!items.length) continue;
+    const meta = SECTION_META[key];
+    const note = items.find(i => i.note)?.note || '';
+    html += `<div class="menu-card"><header><h3>${meta.title}</h3>${meta.cols ? `<span class="cols">${meta.cols}</span>` : ''}</header>`;
+    if (note) html += `<div class="menu-note">🔥 ${note}</div>`;
+    for (const it of items) {
+      const badge = it.badge === 'bestseller' ? '<span class="mini-badge best">★ Bestseller</span>'
+                  : it.badge === 'hot' ? '<span class="mini-badge hot">🔥 Fast seller</span>' : '';
+      html += `<div class="mrow">
+        <div class="info">
+          <div class="name">${it.item} ${badge}</div>
+          ${it.ing ? `<div class="ing">(${it.ing})</div>` : ''}
+        </div>
+        <div class="chips">
+          ${chipHTML(key === 'yummy' ? 'Price' : 'Normal', it.normal, false)}
+          ${chipHTML('Single', it.single, false)}
+          ${chipHTML('Triple', it.triple, true)}
+        </div>
+      </div>`;
+    }
+    html += `</div>`;
+  }
+  document.getElementById('menuRoot').innerHTML = html;
+}
+
+async function loadMenu() {
+  if (SHEET_CSV_URL) {
+    try {
+      const r = await fetch(SHEET_CSV_URL, { cache: 'no-store' });
+      if (r.ok) {
+        const rows = parseCSV(await r.text());
+        if (rows.length > 1) { renderMenu(rows); return; }
+      }
+    } catch (e) { /* fall back below */ }
+  }
+  renderMenu(DEFAULT_MENU);
+}
+loadMenu();
+
+/* --- Open / closed status (India time) --- */
+function updateStatus() {
+  const now = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }));
+  const day = now.getDay(); // 0 Sun … 6 Sat
+  const hr = now.getHours() + now.getMinutes() / 60;
+  const badge = document.getElementById('statusBadge');
+  const isWeekend = (day === 6 || day === 0);
+  if (isWeekend && hr >= 18 && hr < 22) {
+    badge.textContent = '🟢 We\'re open now — come on over!';
+    badge.classList.add('open');
+  } else if (isWeekend && hr < 18) {
+    badge.textContent = '⏰ Opening today at 6 PM';
+  } else if (day === 6 && hr >= 22) {
+    badge.textContent = '🌙 Closed for tonight — back tomorrow, 6 PM';
+  } else {
+    badge.textContent = '🗓️ Opens Saturday at 6 PM';
+  }
+}
+updateStatus();
+setInterval(updateStatus, 60000);
+
+/* --- Slideshow: 3s per photo, soft fade, dots, pause on hover/touch --- */
+(function () {
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const dotsBox = document.getElementById('dots');
+  const show = document.getElementById('slideshow');
+  let idx = 0, timer = null;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  slides.forEach((_, i) => {
+    const b = document.createElement('button');
+    b.setAttribute('role', 'tab');
+    b.setAttribute('aria-label', 'Photo ' + (i + 1));
+    b.addEventListener('click', () => { go(i); restart(); });
+    dotsBox.appendChild(b);
+  });
+  const dots = Array.from(dotsBox.children);
+
+  function go(i) {
+    slides[idx].classList.remove('active');
+    dots[idx].classList.remove('active');
+    idx = (i + slides.length) % slides.length;
+    slides[idx].classList.add('active');
+    dots[idx].classList.add('active');
+  }
+  function start() { if (!reduced && !timer) timer = setInterval(() => go(idx + 1), 3000); }
+  function stop() { clearInterval(timer); timer = null; }
+  function restart() { stop(); start(); }
+
+  go(0);
+  start();
+
+  /* arrows */
+  document.getElementById('prevBtn').addEventListener('click', () => { go(idx - 1); restart(); });
+  document.getElementById('nextBtn').addEventListener('click', () => { go(idx + 1); restart(); });
+
+  /* keyboard (nice bonus on desktop) */
+  show.setAttribute('tabindex', '0');
+  show.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft')  { go(idx - 1); restart(); }
+    if (e.key === 'ArrowRight') { go(idx + 1); restart(); }
+  });
+
+  /* mobile swipe: left = next, right = previous */
+  let touchX = null;
+  show.addEventListener('mouseenter', stop);
+  show.addEventListener('mouseleave', start);
+  show.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; stop(); }, { passive: true });
+  show.addEventListener('touchend', e => {
+    if (touchX !== null) {
+      const dx = e.changedTouches[0].clientX - touchX;
+      if (dx < -45) go(idx + 1);       // swiped left → next
+      else if (dx > 45) go(idx - 1);   // swiped right → previous
+      touchX = null;
+    }
+    setTimeout(start, 1500);
+  }, { passive: true });
+  document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
+})();
+
+/* --- hero background video: swap in only if media/hero.webm|mp4 actually exists --- */
+(function () {
+  const v = document.getElementById('heroVideo');
+  if (!v) return;
+  v.addEventListener('loadeddata', () => {
+    v.style.display = 'block';
+    v.closest('.hero-scene').classList.add('has-video');
+  });
+})();
+
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
